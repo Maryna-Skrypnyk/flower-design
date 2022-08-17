@@ -1,0 +1,31 @@
+.logo {
+  @media screen and (min-width: $mobile-medium) {
+    margin-left: 94px;
+    width: 106px;
+    height: 100%;
+  }
+
+  @media screen and (min-width: $tablet-min) {
+    margin-left: 0;
+    width: 136px;
+    height: 100%;
+  }
+}
+
+.logo__link--desk {
+  display: none;
+
+  @media screen and (min-width: $tablet-min) {
+    display: inline-block;
+    padding: 7px 0;
+  }
+}
+
+.logo__link--mob {
+  display: inline-block;
+  padding: 8px 0;
+
+  @media screen and (min-width: $tablet-min) {
+    display: none;
+  }
+}

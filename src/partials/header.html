@@ -1,0 +1,79 @@
+<header class="header" id="home">
+  <div class="container header__content">
+    <div class="header__main-nav">
+      <!-- burger-menu mobile -->
+      <div class="header__burger--menu">
+        <button
+          class="hamburger hamburger--elastic"
+          type="button"
+          aria-expanded="true"
+          aria-controls="menu-container"
+          data-menu-button
+        >
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+      <!-- logo -->
+      <div class="logo">
+        <!-- logo desktop -->
+        <a class="logo__link--desk" name="logo" href="#home">
+          <img
+            src="./images/logo/logo@1x.png"
+            srcset="./images/logo/logo@2x.png 2x, ./images/logo/logo@3x.png 3x"
+            alt="logo"
+          />
+        </a>
+        <!-- logo mobile -->
+        <a class="logo__link--mob" name="logo" href="#home">
+          <img
+            src="./images/logo/logo-1x-mob.png"
+            srcset="
+              ./images/logo/logo-2x-mob.png 2x,
+              ./images/logo/logo-3x-mob.png 3x
+            "
+            alt="logo"
+          />
+        </a>
+      </div>
+
+      <!-- navigation menu -->
+      <nav class="navigation">
+        <ul class="navigation__list">
+          <li class="navigation__item">
+            <a class="navigation__link" href="#catalog">Каталог</a>
+          </li>
+          <li class="navigation__item">
+            <a
+              class="navigation__link navigation__link--current"
+              href="#about_us"
+              >Про нас</a
+            >
+          </li>
+          <li class="navigation__item">
+            <a class="navigation__link" href="#collect_bouquet">Збери букет</a>
+          </li>
+          <li class="navigation__item">
+            <a class="navigation__link" href="#contacts">Контакти</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- options -->
+    <div class="header__options">
+      <!-- <input type="text" name="search" class="options__input" /> -->
+      <button type="button" class="header__options--search">
+        <svg width="20" height="20" class="icon-search">
+          <use href="./images/sprite.svg#icon-search"></use>
+        </svg>
+      </button>
+      <button type="button" class="header__options--baket">
+        <svg width="20" height="20" class="icon-baket">
+          <use href="./images/sprite.svg#icon-baket"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>

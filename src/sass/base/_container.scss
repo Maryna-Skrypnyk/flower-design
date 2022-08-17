@@ -1,0 +1,20 @@
+//.container
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: $mobile;
+
+  @media screen and (min-width: $mobile-medium) {
+    width: $mobile-medium;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @media screen and (min-width: $tablet-min) {
+    width: $tablet-min;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}

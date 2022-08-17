@@ -1,0 +1,70 @@
+.benefits {
+  padding: 14px 0;
+  background-color: rgba(169, 191, 228, 0.3);
+
+  @media screen and (min-width: $tablet-min) {
+    padding: 0;
+  }
+}
+
+.benefits__overlay {
+  @media screen and (min-width: $tablet-min) {
+    background-image: url('../images/bouquet/abstract_background2-1x-desk.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+  }
+}
+
+.benefits__title {
+  padding: 0;
+  margin-bottom: 12px;
+  color: $secondary-text-color;
+  font-family: $title-font;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+
+  @media screen and (min-width: $tablet-min) {
+    padding: 7px 0 13px;
+  }
+}
+
+.benefits__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: -10px;
+
+  @media screen and (min-width: $tablet-min) {
+    justify-content: center;
+    margin: -5px;
+  }
+}
+
+.benefits__item {
+  margin: 10px;
+  width: 155px;
+
+  @media screen and (min-width: $tablet-min) {
+    margin: 5px;
+    width: 150px;
+  }
+}
+
+.benefits__item-name {
+  padding: 10px;
+  font-family: $main-font;
+  font-weight: 400;
+  font-size: 11px;
+  text-align: center;
+}
+
+.benefits__gallery-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  width: 66px;
+  height: 66px;
+}
