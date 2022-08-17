@@ -4,8 +4,9 @@
   "description": "",
   "homepage": "https://maryna-skrypnyk.github.io/flower-design",
   "scripts": {
-    "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /flower-design/"
+    "build": "parcel build src/*.html",
+    "predeploy": "npm run build -- --public-url /flower-design/",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
+    "gh-pages": "^4.0.0",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4",
