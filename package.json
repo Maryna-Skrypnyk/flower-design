@@ -2,9 +2,9 @@
   "name": "flower-design",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://maryna-skrypnyk.github.io/flower-design",
+  "homepage": "https://maryna-skrypnyk.github.io/flower-design/",
   "scripts": {
-    "build": "parcel build src/*.html",
+    "build": "parcel build src/*.html --public-url /flower-design/",
     "predeploy": "npm run build -- --public-url /flower-design/",
     "deploy": "gh-pages -d dist"
   },
