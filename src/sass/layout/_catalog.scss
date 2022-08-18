@@ -29,6 +29,7 @@
 }
 
 .catalog__item {
+  // width: 200px;
   flex-basis: calc((100% - 40px) / 2);
   margin: 10px;
   padding-bottom: 20px;
@@ -37,9 +38,9 @@
   @include transition(box-shadow, transform);
 
   @media screen and (min-width: $tablet-min) {
+    flex-basis: calc((100% - 30px) / 3);
     margin: 5px;
     padding-bottom: 10px;
-    flex-basis: calc((100% - 30px) / 3);
   }
 
   &:hover,

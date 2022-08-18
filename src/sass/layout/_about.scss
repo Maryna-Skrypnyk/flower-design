@@ -1,3 +1,17 @@
+.about {
+  @media screen and (min-width: $mobile-medium) {
+    background-image: url('../images/bouquet/abstract_background-1x-mob.png');
+    background-repeat: no-repeat;
+    background-position: right bottom 28px;
+  }
+
+  @media screen and (min-width: $tablet-min) {
+    background-image: url('../images/bouquet/abstract_background-1x-desk.png'),
+      url('../images/bouquet/abstract_background2-1x-desk.png');
+    background-position: right bottom, right bottom -36px;
+  }
+}
+
 .about__gallery-list {
   display: flex;
   flex-direction: column;
@@ -36,20 +50,6 @@
 .about__gallery-picture {
   width: 100%;
   height: 100%;
-}
-
-.about__overlay {
-  @media screen and (min-width: $mobile-medium) {
-    background-image: url('../images/bouquet/abstract_background-1x-mob.png');
-    background-repeat: no-repeat;
-    background-position: right bottom 28px;
-  }
-
-  @media screen and (min-width: $tablet-min) {
-    background-image: url('../images/bouquet/abstract_background-1x-desk.png'),
-      url('../images/bouquet/abstract_background2-1x-desk.png');
-    background-position: right bottom, right bottom -36px;
-  }
 }
 
 .about__us {
