@@ -5,12 +5,12 @@
   align-items: center;
   padding: 21px 0;
 
-  &:hover,
-  &:focus {
-    .hamburger-inner,
-    .hamburger-inner::before,
-    .hamburger-inner::after {
-      background-color: $accent-pink-color;
-    }
-  }
+  // &:hover,
+  // &:focus {
+  //   .hamburger-inner,
+  //   .hamburger-inner::before,
+  //   .hamburger-inner::after {
+  //     background-color: $accent-pink-color;
+  //   }
+  // }
 }

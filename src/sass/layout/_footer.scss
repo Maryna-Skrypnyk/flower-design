@@ -5,17 +5,11 @@
   @media screen and (min-width: $tablet-min) {
     // padding: 6px 0 13px;
     padding: 0 0 13px;
+    background-image: url('../images/bouquet/flowers3-1x-desk.png');
+    background-repeat: no-repeat;
+    background-position: right top -128px;
   }
 }
-
-// .footer__overlay {
-//   @media screen and (min-width: $tablet-min) {
-//     background-image: url('../images/bouquet/flowers3-1x-desk.png');
-//     background-repeat: no-repeat;
-//     // background-position: right top 956px;
-//     background-position: right top -128px;
-//   }
-// }
 
 // logo footer
 .logo.footer__logo--desk {
@@ -124,14 +118,15 @@
 
   @media screen and (min-width: $tablet-min) {
     display: block;
-    width: 232px;
   }
 }
 
 .subscribe-form {
-  width: 233px;
+  display: flex;
+  align-items: center;
+  width: 230px;
   height: 26px;
-  border-radius: 25px;
+  border-radius: 50px;
   background-color: #fff;
   padding-left: 10px;
 }
@@ -150,27 +145,12 @@
   }
 }
 
-.button-subscribe {
+.button-secondary.button-subscribe {
   min-width: 90px;
   min-height: 26px;
   font-weight: 400;
   font-size: 10px;
   line-height: 1.3;
-  color: $white-color;
-  background-color: $accent-pink-color;
-  border-radius: 50px;
-  border: 2px solid transparent;
-  cursor: pointer;
-  box-shadow: none;
-  @include transition(background-color, color, box-shadow, border-color);
-
-  &:hover,
-  &:focus {
-    background-color: $white-color;
-    color: $accent-pink-color;
-    box-shadow: $shadow-btn-color;
-    border-color: $accent-pink-color;
-  }
 }
 
 // network footer
