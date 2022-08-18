@@ -1,22 +1,33 @@
 .hero {
   padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-  background-image: url('../images/bouquet/bouquet1-1x-mob.png'),
-    url('../images/bouquet/Ellipse2-1x-mob.png'),
-    url('../images/bouquet/Ellipse3-1x.png'),
-    url('../images/bouquet/Ellipse3-1x.png'),
-    url('../images/bouquet/Ellipse1-1x-mob.png'),
-    url('../images/bouquet/bouquet2-1x-mob.png'),
-    url('../images/bouquet/bouquet3-1x.png'),
-    url('../images/bouquet/bouquet4-1x.png');
-  background-repeat: no-repeat;
-  background-position: top right, top 182px right 188px, top 84px right 356px,
-    top 84px right 35px, top right 20px, top 211px right 160px,
-    top 145px right 20px, top 145px right 320px;
 
   @media screen and (min-width: $tablet-min) {
     padding: 35px 0;
+  }
+}
+
+.hero__overlay {
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: $mobile-medium) {
+    // padding-left: 40px;
+    // padding-right: 40px;
+    background-image: url('../images/bouquet/bouquet1-1x-mob.png'),
+      url('../images/bouquet/Ellipse2-1x-mob.png'),
+      url('../images/bouquet/Ellipse3-1x.png'),
+      url('../images/bouquet/Ellipse3-1x.png'),
+      url('../images/bouquet/Ellipse1-1x-mob.png'),
+      url('../images/bouquet/bouquet2-1x-mob.png'),
+      url('../images/bouquet/bouquet3-1x.png'),
+      url('../images/bouquet/bouquet4-1x.png');
+    background-repeat: no-repeat;
+    background-position: top right, top 182px right 188px, top 84px right 356px,
+      top 84px right 35px, top right 20px, top 211px right 160px,
+      top 145px right 20px, top 145px right 320px;
+  }
+
+  @media screen and (min-width: $tablet-min) {
     background-image: url('../images/bouquet/bouquet1-1x-desk.png'),
       url('../images/bouquet/Ellipse2-1x-desk.png'),
       url('../images/bouquet/Ellipse3-1x.png'),
@@ -26,8 +37,8 @@
       url('../images/bouquet/bouquet3-1x.png'),
       url('../images/bouquet/bouquet4-1x.png');
     background-repeat: no-repeat no-repeat;
-    background-position: right center, right 297px center, top 60px right 270px,
-      bottom 60px right 270px, right center, right 326px center,
+    background-position: right center, right 298px center, top 60px right 268px,
+      bottom 60px right 268px, right center, right 326px center,
       right 290px bottom 30px, right 290px top 30px;
   }
 }
@@ -83,40 +94,3 @@
 .hero__buttons .button-primary:not(:first-child) {
   margin-left: 22px;
 }
-
-// .hero__overlay {
-//   margin-left: auto;
-//   margin-right: auto;
-
-//   @media screen and (min-width: $mobile-medium) {
-//     // padding-left: 40px;
-//     // padding-right: 40px;
-//     background-image: url('../images/bouquet/bouquet1-1x-mob.png'),
-//       url('../images/bouquet/Ellipse2-1x-mob.png'),
-//       url('../images/bouquet/Ellipse3-1x.png'),
-//       url('../images/bouquet/Ellipse3-1x.png'),
-//       url('../images/bouquet/Ellipse1-1x-mob.png'),
-//       url('../images/bouquet/bouquet2-1x-mob.png'),
-//       url('../images/bouquet/bouquet3-1x.png'),
-//       url('../images/bouquet/bouquet4-1x.png');
-//     background-repeat: no-repeat;
-//     background-position: top right, top 182px right 188px, top 84px right 356px,
-//       top 84px right 35px, top right 20px, top 211px right 160px,
-//       top 145px right 20px, top 145px right 320px;
-//   }
-
-//   @media screen and (min-width: $tablet-min) {
-//     background-image: url('../images/bouquet/bouquet1-1x-desk.png'),
-//       url('../images/bouquet/Ellipse2-1x-desk.png'),
-//       url('../images/bouquet/Ellipse3-1x.png'),
-//       url('../images/bouquet/Ellipse3-1x.png'),
-//       url('../images/bouquet/Ellipse1-1x-desk.png'),
-//       url('../images/bouquet/bouquet2-1x-desk.png'),
-//       url('../images/bouquet/bouquet3-1x.png'),
-//       url('../images/bouquet/bouquet4-1x.png');
-//     background-repeat: no-repeat no-repeat;
-//     background-position: right center, right 297px center, top 60px right 270px,
-//       bottom 60px right 270px, right center, right 326px center,
-//       right 290px bottom 30px, right 290px top 30px;
-//   }
-// }

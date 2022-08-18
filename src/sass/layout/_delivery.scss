@@ -2,7 +2,7 @@
   padding: 32px 0 21px;
 
   @media screen and (min-width: $tablet-min) {
-    padding: 44px 0 54px;
+    padding: 40px 0 50px;
     background-image: url('../images/bouquet/flowers3-1x-desk.png');
     background-repeat: no-repeat;
     background-position: right top 344px;
@@ -23,6 +23,7 @@
 .delivery__list {
   display: flex;
   flex-wrap: wrap;
+
   margin: -10px;
 }
 
@@ -32,6 +33,7 @@
 
   @media screen and (min-width: $tablet-min) {
     flex-basis: calc((100% - 60px) / 3);
+    // min-width: 200px;
   }
 }
 
@@ -68,5 +70,6 @@
     padding: 10px 20px;
     font-size: 13px;
     line-height: 1.23;
+    width: 100%;
   }
 }
