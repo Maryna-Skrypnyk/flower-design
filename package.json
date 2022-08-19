@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "hamburgers": "^1.2.1",
+    "jquery": "^3.6.0",
     "modern-normalize": "^1.1.0",
     "vanilla-back-to-top": "^7.2.1"
   },

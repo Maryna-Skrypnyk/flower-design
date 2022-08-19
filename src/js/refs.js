@@ -3,5 +3,6 @@ export default function getRefs() {
     body: document.querySelector('body'),
     delivery: document.querySelector('.js-delivery'),
     catalog: document.querySelector('.js-catalog'),
+    hamburger: document.querySelector('.hamburger'),
   };
 }
