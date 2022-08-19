@@ -26,6 +26,7 @@
 .logo.footer__logo--mob {
   margin: 0 auto;
   padding: 0;
+  width: 106px;
 
   @media screen and (min-width: $tablet-min) {
     display: none;

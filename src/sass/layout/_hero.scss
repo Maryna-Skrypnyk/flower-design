@@ -12,6 +12,10 @@
   margin-left: auto;
   margin-right: auto;
 
+  background-image: url('../images/bouquet/bouquet1-1x-mob.png');
+  background-repeat: no-repeat;
+  background-position: top right;
+
   @media screen and (min-width: $mobile-medium) {
     background-image: url('../images/bouquet/bouquet1-1x-mob.png'),
       url('../images/bouquet/Ellipse2-1x-mob.png'),
@@ -44,13 +48,16 @@
 }
 
 .hero__content {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 200px;
+  padding-bottom: 40px;
+  text-align: center;
+  width: 300px;
+
   @media screen and (min-width: $mobile-medium) {
-    margin-left: auto;
-    margin-right: auto;
     padding-top: 313px;
-    padding-bottom: 40px;
     width: 325px;
-    text-align: center;
   }
 
   @media screen and (min-width: $tablet-min) {

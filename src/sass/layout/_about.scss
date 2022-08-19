@@ -1,9 +1,13 @@
 .about {
-  @media screen and (min-width: $mobile-medium) {
-    background-image: url('../images/bouquet/abstract_background-1x-mob.png');
-    background-repeat: no-repeat;
-    background-position: right bottom 28px;
-  }
+  background-image: url('../images/bouquet/abstract_background-1x-mob.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+
+  // @media screen and (min-width: $mobile-medium) {
+  //   background-image: url('../images/bouquet/abstract_background-1x-mob.png');
+  //   background-repeat: no-repeat;
+  //   background-position: right bottom 28px;
+  // }
 
   @media screen and (min-width: $tablet-min) {
     background-image: url('../images/bouquet/abstract_background-1x-desk.png'),
@@ -18,7 +22,6 @@
   align-items: center;
 
   @media screen and (min-width: $tablet-min) {
-    display: flex;
     flex-direction: row;
     justify-content: center;
   }
@@ -26,8 +29,13 @@
 
 .about__gallery-item {
   position: relative;
-  width: 350px;
-  height: 145px;
+  width: 300px;
+  height: 124px;
+
+  @media screen and (min-width: $mobile-medium) {
+    width: 350px;
+    height: 145px;
+  }
 
   @media screen and (min-width: $tablet-min) {
     width: 230px;
@@ -99,8 +107,7 @@
 
 .about__image {
   width: 292px;
-  height: 180px;
-  //   padding-top: 40px;
+  // height: 180px;
 
   @media screen and (min-width: $tablet-min) {
     width: 320px;
@@ -133,7 +140,11 @@ blockquote {
 
 .about__network {
   height: 100%;
-  margin-top: -46px;
+  margin-top: -18px;
+
+  @media screen and (min-width: $mobile-medium) {
+    margin-top: -16px;
+  }
 
   @media screen and (min-width: $tablet-min) {
     margin-top: 28px;
