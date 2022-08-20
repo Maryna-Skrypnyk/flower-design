@@ -34,12 +34,14 @@
 
     @media screen and (min-width: $tablet-min) {
       display: flex;
-      margin-bottom: 45px;
+      margin-bottom: 40px;
     }
   }
 
   &:nth-child(2) {
-    margin-left: 147px;
+    @media screen and (min-width: $tablet-min) {
+      margin-left: 147px;
+    }
   }
 }
 
