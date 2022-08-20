@@ -4,5 +4,6 @@ export default function getRefs() {
     delivery: document.querySelector('.js-delivery'),
     catalog: document.querySelector('.js-catalog'),
     hamburger: document.querySelector('.hamburger'),
+    reviews: document.querySelector('.js-reviews'),
   };
 }
