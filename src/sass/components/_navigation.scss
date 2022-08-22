@@ -1,14 +1,54 @@
-.navigation {
+.navigation__backdrop {
   display: none;
+
+  &.is-open {
+    @media screen and (max-width: calc($tablet-min - 0.5px)) {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 194, 199, 0.5);
+      width: 100vw;
+      height: 100vh;
+      // overflow-y: scroll;
+      // transition: left 0.3s;
+      animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+      animation-duration: 0.2s; /* don't forget to set a duration! */
+      z-index: 1;
+    }
+  }
 
   @media screen and (min-width: $tablet-min) {
     display: block;
     margin-left: 100px;
   }
 }
+// .navigation__menu {
+//   transition: left 0.3s;
+// }
+
+.navigation__backdrop.is-open .navigation__menu {
+  width: 100%;
+  padding: 50px 35px 35px;
+  background-color: $accent-blue-color;
+  height: 100vh;
+  // transition: left 0.3s;
+  animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.2s; /* don't forget to set a duration! */
+
+  @media screen and (min-width: $mobile-medium) and (max-width: $tablet-min) {
+    width: 300px;
+  }
+}
 
 .navigation__list {
   display: flex;
+  flex-direction: column;
+  transition: left 0.3s;
+
+  @media screen and (min-width: $tablet-min) {
+    flex-direction: row;
+  }
 }
 
 .navigation__item {
@@ -16,18 +56,59 @@
   font-style: normal;
   font-weight: 700;
   color: $white-color;
+
+  &:not(:first-child) {
+    @media screen and (min-width: $tablet-min) {
+      margin-left: 15px;
+    }
+  }
 }
 
-.navigation__item:not(:first-child) {
-  margin-left: 15px;
+.navigation__backdrop.is-open .navigation__item {
+  padding: 8px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.23;
+
+  // opacity: 1;
+  // transform: translateX(0);
+
+  &:nth-child(1) {
+    // transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+    animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 0.5s; /* don't forget to set a duration! */
+  }
+
+  &:nth-child(2) {
+    // transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
+    animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1s; /* don't forget to set a duration! */
+  }
+
+  &:nth-child(3) {
+    // transition: opacity 0.5s 0.3s, transform 0.5s 0.3s;
+    animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1.5s; /* don't forget to set a duration! */
+  }
+
+  &:nth-child(4) {
+    // transition: opacity 0.5s 0.4s, transform 0.5s 0.4s;
+    animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s; /* don't forget to set a duration! */
+  }
+  &:hover,
+  &:focus {
+    padding-left: 35px;
+  }
 }
 
 .navigation__link {
-  display: none;
+  color: inherit;
+  display: block;
+  width: 100%;
 
   @media screen and (min-width: $tablet-min) {
     position: relative;
-    display: block;
     padding: 30px 0 20px;
     color: inherit;
     line-height: 1.14;
@@ -36,7 +117,7 @@
 }
 
 .navigation__link::after {
-  display: none;
+  // display: none;
 
   @media screen and (min-width: $tablet-min) {
     position: absolute;
@@ -54,7 +135,7 @@
 }
 
 .navigation__link:hover::after {
-  display: none;
+  // display: none;
 
   @media screen and (min-width: $tablet-min) {
     position: absolute;
@@ -68,19 +149,3 @@
     background-color: $white-color;
   }
 }
-
-// .navigation__link--current::after {
-//   display: none;
-
-//   @media screen and (min-width: $tablet-min) {
-//     position: absolute;
-//     bottom: 16px;
-//     content: '';
-//     display: block;
-//     width: 100%;
-//     height: 2px;
-//     border-radius: 2px;
-//     box-shadow: $shadow-btn-color;
-//     background-color: $accent-pink-color;
-//   }
-// }

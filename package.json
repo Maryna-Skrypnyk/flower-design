@@ -20,6 +20,7 @@
     "url": "https://github.com/maryna-skrypnyk/flower-design/issues"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "hamburgers": "^1.2.1",
     "jquery": "^3.6.0",
     "modern-normalize": "^1.1.0",

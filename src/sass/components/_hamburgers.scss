@@ -4,6 +4,7 @@ $hamburger-layer-width: 30px;
 $hamburger-layer-height: 2px;
 $hamburger-layer-spacing: 7px;
 $hamburger-layer-color: $white-color;
+$hamburger-active-layer-color: $accent-pink-color;
 
 @import '../node_modules/hamburgers/_sass/hamburgers/hamburgers.scss';
 
@@ -17,4 +18,62 @@ $hamburger-layer-color: $white-color;
   // .hamburger-inner::after {
   //   background-color: $white-color;
   // }
+}
+
+.hamburger--elastic {
+  @media screen and (max-width: 759px) {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
+
+  &.is-open {
+    position: fixed;
+    left: 85%;
+    top: 20px;
+    outline: none;
+    z-index: 2;
+    padding: 0;
+
+    @media screen and (min-width: 400px) {
+      position: fixed;
+      left: 260px;
+    }
+  }
+}
+
+.hamburger.is-open .hamburger-inner,
+.hamburger.is-open .hamburger-inner::before,
+.hamburger.is-open .hamburger-inner::after {
+  background-color: $accent-pink-color;
+}
+
+/*
+   * Elastic
+   */
+.hamburger--elastic .hamburger-inner {
+  top: 2px;
+  transition-duration: 0.275s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.hamburger--elastic .hamburger-inner::before {
+  top: 10px;
+  transition: opacity 0.125s 0.275s ease;
+}
+.hamburger--elastic .hamburger-inner::after {
+  top: 20px;
+  transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.hamburger--elastic.is-open .hamburger-inner {
+  transform: translate3d(0, 10px, 0) rotate(135deg);
+  transition-delay: 0.075s;
+}
+.hamburger--elastic.is-open .hamburger-inner::before {
+  transition-delay: 0s;
+  opacity: 0;
+}
+.hamburger--elastic.is-open .hamburger-inner::after {
+  transform: translate3d(0, -20px, 0) rotate(-270deg);
+  transition-delay: 0.075s;
 }
