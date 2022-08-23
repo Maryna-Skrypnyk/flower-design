@@ -35,7 +35,8 @@
   background-image: url('../images/bouquet/flowers1-1x-desk.png'),
     url('../images/bouquet/flowers2-1x-desk.png');
   background-repeat: no-repeat no-repeat;
-  background-position: bottom 236px right, top 206px left;
+  // background-position: bottom 236px right, top 206px left;
+  background-position: top -180px right, top 206px left;
   background-size: auto;
 
   @media screen and (min-width: $mobile-medium) and (max-width: $tablet-min) {
