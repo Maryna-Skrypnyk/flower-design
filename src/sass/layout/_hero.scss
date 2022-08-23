@@ -1,5 +1,4 @@
 .hero {
-  // padding: 0;
   padding: 60px 0 0;
 
   @media screen and (min-width: $tablet-min) {
@@ -12,51 +11,30 @@
   margin-left: auto;
   margin-right: auto;
 
-  background-image: url('../images/bouquet/bouquet1-1x-mob.png');
+  background-image: url('../images/bouquet/bg_mob-no-background.png');
   background-repeat: no-repeat;
-  background-position: top right;
-
-  @media screen and (min-width: $mobile-medium) {
-    background-image: url('../images/bouquet/bouquet1-1x-mob.png'),
-      url('../images/bouquet/Ellipse2-1x-mob.png'),
-      url('../images/bouquet/Ellipse3-1x.png'),
-      url('../images/bouquet/Ellipse3-1x.png'),
-      url('../images/bouquet/Ellipse1-1x-mob.png'),
-      url('../images/bouquet/bouquet2-1x-mob.png'),
-      url('../images/bouquet/bouquet3-1x.png'),
-      url('../images/bouquet/bouquet4-1x.png');
-    background-repeat: no-repeat;
-    background-position: top right, top 182px right 188px, top 84px right 356px,
-      top 84px right 35px, top right 20px, top 211px right 160px,
-      top 145px right 20px, top 145px right 320px;
-  }
+  background-position: top center;
+  background-size: 300px;
 
   @media screen and (min-width: $tablet-min) {
-    background-image: url('../images/bouquet/bouquet1-1x-desk.png'),
-      url('../images/bouquet/Ellipse2-1x-desk.png'),
-      url('../images/bouquet/Ellipse3-1x.png'),
-      url('../images/bouquet/Ellipse3-1x.png'),
-      url('../images/bouquet/Ellipse1-1x-desk.png'),
-      url('../images/bouquet/bouquet2-1x-desk.png'),
-      url('../images/bouquet/bouquet3-1x.png'),
-      url('../images/bouquet/bouquet4-1x.png');
-    background-repeat: no-repeat no-repeat;
-    background-position: right center, right 298px center, top 60px right 270px,
-      bottom 60px right 270px, right center, right 326px center,
-      right 290px bottom 30px, right 290px top 30px;
+    background-image: url('../images/bouquet/bg_web-no-background.png');
+    background-repeat: no-repeat;
+    // background-position: top center, top center;
+    background-position: right;
+    background-size: contain;
   }
 }
 
 .hero__content {
   margin-left: auto;
   margin-right: auto;
-  padding-top: 200px;
+  padding-top: 250px;
   padding-bottom: 40px;
   text-align: center;
   width: 300px;
 
   @media screen and (min-width: $mobile-medium) {
-    padding-top: 313px;
+    padding-top: 280px;
     width: 325px;
   }
 

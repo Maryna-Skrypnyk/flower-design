@@ -7,34 +7,36 @@
       position: fixed;
       top: 0;
       left: 0;
-      background-color: rgba(255, 194, 199, 0.5);
+      background-color: rgba(169, 191, 228, 0.5);
       width: 100vw;
       height: 100vh;
       // overflow-y: scroll;
-      // transition: left 0.3s;
-      animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
-      animation-duration: 0.2s; /* don't forget to set a duration! */
+      animation: fadeIn;
+      animation-duration: 0.3s;
       z-index: 1;
     }
   }
 
   @media screen and (min-width: $tablet-min) {
     display: block;
-    margin-left: 100px;
+    margin-left: 96px;
   }
 }
-// .navigation__menu {
-//   transition: left 0.3s;
-// }
 
 .navigation__backdrop.is-open .navigation__menu {
   width: 100%;
   padding: 50px 35px 35px;
-  background-color: $accent-blue-color;
+  background-color: $accent-pink-color;
   height: 100vh;
-  // transition: left 0.3s;
-  animation: zoomIn; /* referring directly to the animation's @keyframe declaration */
-  animation-duration: 0.2s; /* don't forget to set a duration! */
+  box-shadow: $shadow-card-hover;
+  animation: fadeInLeft;
+  animation-duration: 0.2s;
+
+  background-image: url('../images/bouquet/flowers1-1x-desk.png'),
+    url('../images/bouquet/flowers2-1x-desk.png');
+  background-repeat: no-repeat no-repeat;
+  background-position: bottom 236px right, top 206px left;
+  background-size: auto;
 
   @media screen and (min-width: $mobile-medium) and (max-width: $tablet-min) {
     width: 300px;
@@ -44,7 +46,8 @@
 .navigation__list {
   display: flex;
   flex-direction: column;
-  transition: left 0.3s;
+  animation: fadeInTopLeft;
+  animation-duration: 0.4s;
 
   @media screen and (min-width: $tablet-min) {
     flex-direction: row;
@@ -65,40 +68,30 @@
 }
 
 .navigation__backdrop.is-open .navigation__item {
-  padding: 8px;
+  padding: 10px 0 10px;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.23;
-
-  // opacity: 1;
-  // transform: translateX(0);
+  border-bottom: 0.5px dashed rgba(152, 158, 195, 0.5);
 
   &:nth-child(1) {
-    // transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
-    animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
-    animation-duration: 0.5s; /* don't forget to set a duration! */
+    animation: fadeInLeft;
+    animation-duration: 0.3s;
   }
 
   &:nth-child(2) {
-    // transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
-    animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
-    animation-duration: 1s; /* don't forget to set a duration! */
+    animation: fadeInLeft;
+    animation-duration: 0.5s;
   }
 
   &:nth-child(3) {
-    // transition: opacity 0.5s 0.3s, transform 0.5s 0.3s;
-    animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
-    animation-duration: 1.5s; /* don't forget to set a duration! */
+    animation: fadeInLeft;
+    animation-duration: 0.7s;
   }
 
   &:nth-child(4) {
-    // transition: opacity 0.5s 0.4s, transform 0.5s 0.4s;
-    animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
-    animation-duration: 2s; /* don't forget to set a duration! */
-  }
-  &:hover,
-  &:focus {
-    padding-left: 35px;
+    animation: fadeInLeft;
+    animation-duration: 0.9s;
   }
 }
 
@@ -117,8 +110,6 @@
 }
 
 .navigation__link::after {
-  // display: none;
-
   @media screen and (min-width: $tablet-min) {
     position: absolute;
     bottom: 16px;
@@ -135,8 +126,6 @@
 }
 
 .navigation__link:hover::after {
-  // display: none;
-
   @media screen and (min-width: $tablet-min) {
     position: absolute;
     bottom: 16px;

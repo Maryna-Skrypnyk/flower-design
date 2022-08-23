@@ -4,6 +4,10 @@
 
   @media screen and (min-width: $tablet-min) {
     padding: 24px 0 34px;
+    background-image: url('../images/bouquet/flowers1-1x-desk.png'),
+      url('../images/bouquet/flowers2-1x-desk.png');
+    background-repeat: no-repeat no-repeat;
+    background-position: bottom 284px right, top 183px left;
   }
 }
 
@@ -27,6 +31,7 @@
 .reviews__item {
   @media screen and (min-width: $tablet-min) {
     display: flex;
+    margin-left: 40px;
   }
 
   &:not(:nth-child(2)) {
@@ -40,7 +45,7 @@
 
   &:nth-child(2) {
     @media screen and (min-width: $tablet-min) {
-      margin-left: 147px;
+      margin-left: 187px;
     }
   }
 }
@@ -51,11 +56,18 @@
   margin-bottom: 17px;
   border-radius: 50%;
   background-color: $accent-blue-color;
+  width: 100px;
+  height: 100px;
+
+  @media screen and (min-width: $tablet-min) {
+    margin: 0;
+  }
 }
 
 .reviews__quote {
   @media screen and (min-width: $tablet-min) {
-    margin-left: 47px;
+    margin-left: 45px;
+    width: 334px;
   }
 }
 
@@ -74,5 +86,17 @@
 .reviews__text {
   @media screen and (min-width: $tablet-min) {
     padding-bottom: 7px;
+
+    &::after {
+      position: absolute;
+      content: '';
+      bottom: 30px;
+      left: 0;
+      width: 20px;
+      height: 0;
+      border: 1px solid $accent-pink-color;
+      background-color: $accent-pink-color;
+      border-radius: 20px;
+    }
   }
 }

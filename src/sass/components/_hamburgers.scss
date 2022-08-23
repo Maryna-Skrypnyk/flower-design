@@ -29,15 +29,17 @@ $hamburger-active-layer-color: $accent-pink-color;
 
   &.is-open {
     position: fixed;
-    left: 85%;
-    top: 20px;
+    // left: 85%;
+    // top: 20px;
+    left: 6px;
+    top: 10px;
     outline: none;
     z-index: 2;
     padding: 0;
 
     @media screen and (min-width: 400px) {
       position: fixed;
-      left: 260px;
+      // left: 260px;
     }
   }
 }
@@ -45,7 +47,7 @@ $hamburger-active-layer-color: $accent-pink-color;
 .hamburger.is-open .hamburger-inner,
 .hamburger.is-open .hamburger-inner::before,
 .hamburger.is-open .hamburger-inner::after {
-  background-color: $accent-pink-color;
+  background-color: $secondary-text-color;
 }
 
 /*

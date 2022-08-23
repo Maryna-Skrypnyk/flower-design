@@ -3,16 +3,9 @@
   background-repeat: no-repeat;
   background-position: right bottom;
 
-  // @media screen and (min-width: $mobile-medium) {
-  //   background-image: url('../images/bouquet/abstract_background-1x-mob.png');
-  //   background-repeat: no-repeat;
-  //   background-position: right bottom 28px;
-  // }
-
   @media screen and (min-width: $tablet-min) {
-    background-image: url('../images/bouquet/abstract_background-1x-desk.png'),
-      url('../images/bouquet/abstract_background2-1x-desk.png');
-    background-position: right bottom, right bottom -36px;
+    background-image: url('../images/bouquet/abstract_background-1x-desk.png');
+    background-position: right bottom;
   }
 }
 
@@ -76,7 +69,8 @@
   padding-bottom: 30px;
 
   @media screen and (min-width: $tablet-min) {
-    padding-bottom: 48px;
+    padding-bottom: 40px;
+    margin-right: 40px;
   }
 }
 
@@ -117,6 +111,7 @@
 blockquote {
   position: relative;
   margin: 0;
+
   @media screen and (min-width: $tablet-min) {
     margin: 0 0 0 18px;
   }
