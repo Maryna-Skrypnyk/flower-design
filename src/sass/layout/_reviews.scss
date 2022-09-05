@@ -34,7 +34,7 @@
     margin-left: 40px;
   }
 
-  &:not(:nth-child(2)) {
+  &:not(:nth-child(2n)) {
     margin-bottom: 17px;
 
     @media screen and (min-width: $tablet-min) {
@@ -43,7 +43,7 @@
     }
   }
 
-  &:nth-child(2) {
+  &:nth-child(2n) {
     @media screen and (min-width: $tablet-min) {
       margin-left: 187px;
     }

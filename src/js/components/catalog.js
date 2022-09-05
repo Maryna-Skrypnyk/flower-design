@@ -7,3 +7,5 @@ import '../../sass/index.scss';
 const refs = getRefs();
 
 refs.catalog.insertAdjacentHTML('beforeend', catalogTemplate(catalogData));
+
+/////////////////

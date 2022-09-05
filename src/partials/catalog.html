@@ -1,4 +1,4 @@
-<section class="catalog" id="catalog">
+<!-- <section class="catalog" id="catalog">
   <div class="container">
     <h2 class="catalog__title">Каталог</h2>
     <ul class="catalog__list js-catalog"></ul>
@@ -15,6 +15,37 @@
           <use href="./images/sprite.svg#icon-arrow-right"></use>
         </svg>
       </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="catalog" id="catalog">
+  <div class="container">
+    <h2 class="catalog__title">Каталог</h2>
+    <ul class="catalog__list js-catalog"></ul>
+
+    <div class="pagination-pages">
+      <button
+        id="prev-button"
+        class="pagination-arrow arrow-left"
+        title="Previous page"
+        aria-label="Previous page"
+      >
+        <svg width="35" height="35" class="icon-arrow">
+          <use href="./images/sprite.svg#icon-arrow-left"></use>
+        </svg>
+      </button>
+      <div class="pages-numbers" id="pagination-numbers"></div>
+      <button
+        id="next-button"
+        class="pagination-arrow arrow-right"
+        title="Next page"
+        aria-label="Next page"
+      >
+        <svg width="35" height="35" class="icon-arrow">
+          <use href="./images/sprite.svg#icon-arrow-right"></use>
+        </svg>
+      </button>
     </div>
   </div>
 </section>

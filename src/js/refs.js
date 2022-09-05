@@ -7,5 +7,6 @@ export default function getRefs() {
     navigation: document.querySelector('[data-menu]'),
     navLink: document.querySelectorAll('[data-menu] .js-nav-link'),
     reviews: document.querySelector('.js-reviews'),
+    paginationNumbers: document.getElementById('pagination-numbers'),
   };
 }
