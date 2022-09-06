@@ -5,4 +5,3 @@ import './js/components/catalog';
 import './js/components/reviews';
 import './js/components/delivery';
 import './js/components/scroll';
-// import './js/components/pagination-catalog';

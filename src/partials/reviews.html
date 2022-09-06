@@ -1,21 +1,34 @@
 <section class="reviews" id="reviews">
   <div class="container">
     <h2 class="reviews__title">Відгуки</h2>
-    <ul class="reviews__list js-reviews"></ul>
-  </div>
-  <div class="pagination container">
-    <div class="pagination-pages">
-      <div class="pagination-arrow arrow-left">
+    <ul
+      class="reviews__list js-reviews"
+      data-current-page="1"
+      aria-live="polite"
+    ></ul>
+
+    <div class="pagination__pages--reviews">
+      <button
+        id="prev__button--reviews"
+        class="pagination-arrow arrow-left"
+        aria-label="Previous page"
+        title="Previous page"
+      >
         <svg width="35" height="35" class="icon-arrow">
           <use href="./images/sprite.svg#icon-arrow-left"></use>
         </svg>
-      </div>
-      <div class="pages-numbers" id="pagination"></div>
-      <div class="pagination-arrow arrow-right">
+      </button>
+      <div class="pages__numbers--reviews" id="pagination-reviews"></div>
+      <button
+        id="next__button--reviews"
+        class="pagination-arrow arrow-right"
+        aria-label="Next page"
+        title="Next page"
+      >
         <svg width="35" height="35" class="icon-arrow">
           <use href="./images/sprite.svg#icon-arrow-right"></use>
         </svg>
-      </div>
+      </button>
     </div>
   </div>
 </section>

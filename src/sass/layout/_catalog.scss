@@ -3,9 +3,6 @@
 
   @media screen and (min-width: $tablet-min) {
     padding: 46px 0 20px;
-    background-image: url('../images/bouquet/flowers1-1x-desk.png');
-    background-repeat: no-repeat;
-    background-position: top 714px right;
   }
 }
 
@@ -20,9 +17,6 @@
 
 .catalog__list {
   margin-bottom: 7px;
-  // margin-left: auto;
-  // margin-right: auto;
-  // width: 280px;
 
   @media screen and (min-width: $mobile-medium) {
     display: flex;
@@ -33,7 +27,7 @@
 
   @media screen and (min-width: $tablet-min) {
     margin: -5px;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
   }
 }
 
@@ -44,6 +38,9 @@
   transform: scale(1);
   cursor: url(../images/cursor.svg) 0 0, auto;
   @include transition(box-shadow, transform);
+
+  animation: fadeIn;
+  animation-duration: 2s;
 
   &:hover,
   &:focus {
@@ -60,10 +57,19 @@
     flex-basis: calc((100% - 30px) / 3);
     margin: 5px;
     padding-bottom: 10px;
+    margin-bottom: 0;
 
-    &:not(:nth-last-child(-n + 3)) {
+    &:nth-child(6n - 3),
+    &:nth-child(6n - 4),
+    &:nth-child(6n - 5) {
       margin-bottom: 20px;
+      animation: fadeIn;
+      animation-duration: 1s;
     }
+  }
+
+  &.hidden {
+    display: none;
   }
 }
 

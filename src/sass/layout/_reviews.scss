@@ -1,13 +1,8 @@
 .reviews {
   padding: 18px 0 16px;
-  background-color: rgba(169, 191, 228, 0.2);
 
   @media screen and (min-width: $tablet-min) {
     padding: 24px 0 34px;
-    background-image: url('../images/bouquet/flowers1-1x-desk.png'),
-      url('../images/bouquet/flowers2-1x-desk.png');
-    background-repeat: no-repeat no-repeat;
-    background-position: bottom 284px right, top 183px left;
   }
 }
 
@@ -37,6 +32,9 @@
   &:not(:nth-child(2n)) {
     margin-bottom: 17px;
 
+    animation: fadeIn;
+    animation-duration: 1s;
+
     @media screen and (min-width: $tablet-min) {
       display: flex;
       margin-bottom: 40px;
@@ -44,9 +42,15 @@
   }
 
   &:nth-child(2n) {
+    animation: fadeIn;
+    animation-duration: 2s;
     @media screen and (min-width: $tablet-min) {
       margin-left: 187px;
     }
+  }
+
+  &.hidden {
+    display: none;
   }
 }
 

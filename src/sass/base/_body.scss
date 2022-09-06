@@ -1,11 +1,19 @@
 body {
-  background-color: $white-color;
+  // background-color: transparent;
   font-family: $main-font;
   font-size: 14px;
   line-height: 1.3;
   //   letter-spacing: 0.04em;
   font-weight: 400;
   color: $primary-text-color;
+
+  @media screen and (min-width: $tablet-min) {
+    background-image: url('../images/bouquet/flowers1-1x-desk.png'),
+      url('../images/bouquet/flowers3-1x-desk.png'),
+      url('../images/bouquet/flowers3-1x-desk.png');
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: top 1797px right, right top -128px, right bottom -40px;
+  }
 }
 
 html {
@@ -57,4 +65,14 @@ body .modal-open {
   height: 100%;
   width: 100%;
   position: fixed;
+}
+
+.bg-reviews {
+  background-color: rgba(169, 191, 228, 0.2);
+
+  @media screen and (min-width: $tablet-min) {
+    background-image: url('../images/bouquet/flowers2-1x-desk.png');
+    background-repeat: no-repeat;
+    background-position: bottom 116px left;
+  }
 }

@@ -1,0 +1,61 @@
+.pagination__pages--reviews {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -6px;
+  height: 50px;
+}
+
+.pagination-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.icon-arrow {
+  fill: #d9d9d9;
+  @include transition(fill);
+
+  .pagination-arrow:not(.disabled) & {
+    fill: $accent-pink-color;
+  }
+
+  .pagination-arrow:not(.disabled) &:hover {
+    fill: $accent-pink-color;
+  }
+}
+
+.pages__numbers--reviews {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: -3px;
+}
+
+.page__number--reviews {
+  margin: 3px;
+  padding: 0;
+  width: 8px;
+  height: 8px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  border: none;
+  @include transition(background-color);
+
+  &:hover,
+  &:focus {
+    background-color: $accent-pink-color;
+  }
+
+  &.active {
+    background-color: $accent-pink-color;
+  }
+}

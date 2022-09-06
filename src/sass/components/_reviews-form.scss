@@ -1,12 +1,5 @@
 .reviews__form {
   padding: 0 0 34px;
-  background-color: rgba(169, 191, 228, 0.2);
-
-  @media screen and (min-width: $tablet-min) {
-    background-image: url('../images/bouquet/flowers2-1x-desk.png');
-    background-repeat: no-repeat;
-    background-position: bottom 105px left;
-  }
 }
 
 .reviews__title--form {
@@ -67,7 +60,6 @@
   border-radius: 0;
   font-size: 12px;
   line-height: 1.25;
-  color: #fffdfd;
   box-shadow: $shadow-btn-color;
   margin-left: 0;
   margin-right: auto;

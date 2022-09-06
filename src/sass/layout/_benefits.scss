@@ -4,11 +4,6 @@
 
   @media screen and (min-width: $tablet-min) {
     padding: 0;
-  }
-}
-
-.benefits__overlay {
-  @media screen and (min-width: $tablet-min) {
     background-image: url('../images/bouquet/abstract_background2-1x-desk.png');
     background-repeat: no-repeat;
     background-position: right top;
