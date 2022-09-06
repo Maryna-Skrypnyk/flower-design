@@ -35,6 +35,36 @@
     flex-basis: calc((100% - 60px) / 3);
     // min-width: 200px;
   }
+
+  &:nth-child(1) {
+    animation: fadeInTopLeft;
+    animation-duration: 1s;
+  }
+
+  &:nth-child(2) {
+    animation: fadeInDown;
+    animation-duration: 1s;
+  }
+
+  &:nth-child(3) {
+    animation: fadeInTopRight;
+    animation-duration: 1s;
+  }
+
+  &:nth-child(4) {
+    animation: fadeInBottomLeft;
+    animation-duration: 1s;
+  }
+
+  &:nth-child(5) {
+    animation: fadeInUp;
+    animation-duration: 1s;
+  }
+
+  &:nth-child(6) {
+    animation: fadeInBottomRight;
+    animation-duration: 1s;
+  }
 }
 
 .delivery__item--box {

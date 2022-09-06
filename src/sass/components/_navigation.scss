@@ -47,7 +47,7 @@
 .navigation__list {
   display: flex;
   flex-direction: column;
-  animation: fadeInTopLeft;
+  animation: fadeIn;
   animation-duration: 0.4s;
 
   @media screen and (min-width: $tablet-min) {
