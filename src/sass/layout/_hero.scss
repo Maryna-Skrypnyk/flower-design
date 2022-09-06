@@ -88,8 +88,7 @@
   cursor: url(../images/cursor.svg) 0 0, auto;
   @include transition(color);
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: $white-color;
   }
 }
