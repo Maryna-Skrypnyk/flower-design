@@ -55,11 +55,14 @@ const handleActivePageNumber = () => {
 
 const appendPageNumber = index => {
   const pageNumber = document.createElement('button');
-  pageNumber.className = 'page__number--catalog';
-  //   pageNumber.innerHTML = index;
+  pageNumber.setAttribute('data-catalog', '#catalog');
   pageNumber.setAttribute('page-index', index);
+  //   pageNumber.innerHTML = index;
   pageNumber.setAttribute('aria-label', 'Page ' + index);
+  pageNumber.className = 'page__number--catalog';
   paginationNumbers.appendChild(pageNumber);
+
+  makeAnchors();
 };
 
 const getPaginationNumbers = () => {
@@ -107,3 +110,22 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+// плавна прокрутка до початку кожної сторінки каталогу по якорю
+
+const makeAnchors = () => {
+  const anchors = document.querySelectorAll('button[data-catalog*="#"]');
+
+  anchors.forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      e.preventDefault();
+      const blockID = anchor.getAttribute('data-catalog');
+      document.querySelector(`${blockID}`).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+  });
+};
+
+//////////////////////

@@ -53,9 +53,12 @@ const appendPageNumber = index => {
   const pageNumber = document.createElement('button');
   pageNumber.className = 'page__number--reviews';
   //   pageNumber.innerHTML = index;
+  pageNumber.setAttribute('data-reviews', '#reviews');
   pageNumber.setAttribute('page-index', index);
   pageNumber.setAttribute('aria-label', 'Page ' + index);
   paginationNumbers.appendChild(pageNumber);
+
+  makeAnchors();
 };
 
 const getPaginationNumbers = () => {
@@ -103,3 +106,22 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+// плавна прокрутка до початку кожної сторінки відгуків по якорю
+
+const makeAnchors = () => {
+  const anchors = document.querySelectorAll('button[data-reviews*="#"]');
+
+  anchors.forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      e.preventDefault();
+      const blockID = anchor.getAttribute('data-reviews');
+      document.querySelector(`${blockID}`).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+  });
+};
+
+//////////////////////
