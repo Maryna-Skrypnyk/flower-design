@@ -16,7 +16,6 @@ const onToggleHamburgerMenu = e => {
 
 refs.navLink.forEach(link =>
   link.addEventListener('click', e => {
-    console.log(e.target);
     refs.hamburger.classList.remove('is-open');
     refs.hamburger.setAttribute('aria-expanded', false);
 
