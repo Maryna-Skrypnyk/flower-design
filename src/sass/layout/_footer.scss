@@ -71,7 +71,7 @@
 }
 
 .footer__content--title {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: inherit;
   font-family: $title-font;
   font-weight: 400;
@@ -79,6 +79,7 @@
   line-height: 1.25;
 
   @media screen and (min-width: $tablet-min) {
+    margin-bottom: 10px;
     font-size: 14px;
     line-height: 1.3;
   }
