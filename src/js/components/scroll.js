@@ -31,3 +31,20 @@ $(document).on(
 //     });
 //   });
 // });
+
+//////////////
+
+export const makeScrollIntoAnchors = set => {
+  const anchors = document.querySelectorAll(`button[data-${set}*="#"]`);
+
+  anchors.forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      e.preventDefault();
+      const blockID = anchor.getAttribute(`data-${set}`);
+      document.querySelector(`${blockID}`).scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    });
+  });
+};

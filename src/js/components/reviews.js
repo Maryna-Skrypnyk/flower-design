@@ -1,127 +1,19 @@
 import reviewsTemplate from '../../templates/reviews.hbs';
 import getRefs from '../../js/refs';
 import dataReviews from '../../data/reviews.json';
+import { makePagination } from './pagination';
 
 const refs = getRefs();
-
 refs.reviews.insertAdjacentHTML('beforeend', reviewsTemplate(dataReviews));
 
-const paginationNumbers = document.getElementById('pagination-reviews');
-const reviewsItems = refs.reviews.querySelectorAll('.reviews__item');
-const nextButton = document.getElementById('next__button--reviews');
-const prevButton = document.getElementById('prev__button--reviews');
+// об'єкт налаштувань пагінації reviews
 
-const paginationLimit = 2;
-const pageCount = Math.ceil(reviewsItems.length / paginationLimit);
-let currentPage = 1;
-
-const disableButton = button => {
-  button.classList.add('disabled');
-  button.setAttribute('disabled', true);
+const paginationOptionsReviews = {
+  limit: 2,
+  paginationName: 'reviews',
 };
 
-const enableButton = button => {
-  button.classList.remove('disabled');
-  button.removeAttribute('disabled');
-};
+const { limit, paginationName } = paginationOptionsReviews;
 
-const handlePageButtonsStatus = () => {
-  if (currentPage === 1) {
-    disableButton(prevButton);
-  } else {
-    enableButton(prevButton);
-  }
-
-  if (pageCount === currentPage) {
-    disableButton(nextButton);
-  } else {
-    enableButton(nextButton);
-  }
-};
-
-const handleActivePageNumber = () => {
-  document.querySelectorAll('.page__number--reviews').forEach(button => {
-    button.classList.remove('active');
-    const pageIndex = Number(button.getAttribute('page-index'));
-    if (pageIndex == currentPage) {
-      button.classList.add('active');
-    }
-  });
-};
-
-const appendPageNumber = index => {
-  const pageNumber = document.createElement('button');
-  pageNumber.className = 'page__number--reviews';
-  //   pageNumber.innerHTML = index;
-  pageNumber.setAttribute('data-reviews', '#reviews');
-  pageNumber.setAttribute('page-index', index);
-  pageNumber.setAttribute('aria-label', 'Page ' + index);
-  paginationNumbers.appendChild(pageNumber);
-
-  makeAnchors();
-};
-
-const getPaginationNumbers = () => {
-  for (let i = 1; i <= pageCount; i++) {
-    appendPageNumber(i);
-  }
-};
-
-const setCurrentPage = pageNum => {
-  currentPage = pageNum;
-
-  handleActivePageNumber();
-  handlePageButtonsStatus();
-
-  const prevRange = (pageNum - 1) * paginationLimit;
-  const currRange = pageNum * paginationLimit;
-
-  reviewsItems.forEach((item, index) => {
-    item.classList.add('hidden');
-    if (index >= prevRange && index < currRange) {
-      item.classList.remove('hidden');
-    }
-  });
-};
-
-window.addEventListener('load', () => {
-  getPaginationNumbers();
-  setCurrentPage(1);
-
-  prevButton.addEventListener('click', () => {
-    setCurrentPage(currentPage - 1);
-  });
-
-  nextButton.addEventListener('click', () => {
-    setCurrentPage(currentPage + 1);
-  });
-
-  document.querySelectorAll('.page__number--reviews').forEach(button => {
-    const pageIndex = Number(button.getAttribute('page-index'));
-
-    if (pageIndex) {
-      button.addEventListener('click', () => {
-        setCurrentPage(pageIndex);
-      });
-    }
-  });
-});
-
-// плавна прокрутка до початку кожної сторінки відгуків по якорю
-
-const makeAnchors = () => {
-  const anchors = document.querySelectorAll('button[data-reviews*="#"]');
-
-  anchors.forEach(anchor => {
-    anchor.addEventListener('click', e => {
-      e.preventDefault();
-      const blockID = anchor.getAttribute('data-reviews');
-      document.querySelector(`${blockID}`).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    });
-  });
-};
-
-//////////////////////
+// виклик функції пагінації
+makePagination(limit, paginationName);
