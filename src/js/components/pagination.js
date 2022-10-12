@@ -2,13 +2,15 @@ import { makeScrollIntoAnchors } from './scroll';
 
 export const makePagination = (limit, paginationName) => {
   // вибір об'єктів пагінації в DOM по селектору або ID (id та селектори повинні бути створені за аналогією для повторног використання однакової пагінації в різних місцях)
-  const paginationItems = document.querySelectorAll(`.${paginationName}__item`),
-    paginationNumbers = document.getElementById(`pagination-${paginationName}`),
-    nextButton = document.getElementById(`next__button--${paginationName}`),
-    prevButton = document.getElementById(`prev__button--${paginationName}`),
-    // встановлення кількості елементів на сторінці та кількості сторінок (елементів пагінації)
-    paginationLimit = limit,
-    pageCount = Math.ceil(paginationItems.length / paginationLimit);
+  const paginationItems = document.querySelectorAll(`.${paginationName}__item`);
+  const paginationNumbers = document.getElementById(
+    `pagination-${paginationName}`
+  );
+  const nextButton = document.getElementById(`next__button--${paginationName}`);
+  const prevButton = document.getElementById(`prev__button--${paginationName}`);
+  // встановлення кількості елементів на сторінці та кількості сторінок (елементів пагінації)
+  const paginationLimit = limit;
+  const pageCount = Math.ceil(paginationItems.length / paginationLimit);
   let currentPage = 1;
 
   // перемикач включення кнопки (вимкнено)
