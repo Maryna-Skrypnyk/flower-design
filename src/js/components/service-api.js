@@ -1,113 +1,154 @@
-const BASE_URL = 'http://localhost:4040';
+// // const BASE_URL = 'http://localhost:4040';
 
-// const fetchReviews = (page = 1, limit = 2) => {
-//   return fetch(`${BASE_URL}/comments?_page=${page}&_limit=${limit}`).then(res =>
-//     res.json()
-//   );
+// const API_KEY = '63469c5f745bd0dbd381d6c4';
+// const BASE_URL = `https://${API_KEY}.mockapi.io`;
+
+// const fetchReviews = async (page = 1) => {
+//   try {
+//     const response = await fetch(`${BASE_URL}/comments?page=${page}&limit=2`);
+//     const reviews = await response.json();
+//     return reviews;
+//   } catch (error) {
+//     console.log(error);
+//   }
 // };
 
-// const fetchReviews = () =>
-//   fetch(`${BASE_URL}/comments`)
-//     .then(res => res.json())
-//     // .then(({ comments }) => comments)
-//     .catch(error => console.log(error));
+// const addReview = async review => {
+//   const options = {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(review),
+//   };
 
-const fetchReviews = async () => {
-  const response = await fetch(`${BASE_URL}/comments`);
-  const reviews = await response.json();
-  return reviews;
-};
-
-const addReview = async review => {
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(review),
-  };
-
-  const response = await fetch(`${BASE_URL}/comments`, options);
-  const newReview = await response.json();
-  return newReview;
-};
-
-const removeReview = async reviewId => {
-  const url = `${BASE_URL}/comments/${reviewId}`;
-  const options = {
-    method: 'DELETE',
-  };
-
-  const response = await fetch(url, options);
-  const review = await response.json();
-  return review;
-};
-
-const updateReviewById = async (update, reviewId) => {
-  const options = {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(update),
-  };
-
-  const response = await fetch(`${BASE_URL}/comments/${reviewId}`, options);
-  const review = await response.json();
-  return review;
-};
-
-const fetchReviewById = async reviewId => {
-  const response = await fetch(`${BASE_URL}/comments/${reviewId}`);
-  const review = await response.json();
-  return review;
-};
-
-const reviewsApiService = {
-  fetchReviews,
-  addReview,
-  removeReview,
-  updateReviewById,
-  fetchReviewById,
-};
-
-export default reviewsApiService;
-
-/////////////////
-
-// export default class ReviewsApiService {
-//   constructor() {
-//     this.page = 1;
-//   }
-
-//   async fetchReviews() {
-//     const url = `${BASE_URL}/comments?_page=${this.page}&_limit=2`;
-
-//     const response = await fetch(url);
-//     const { comments } = await response.json();
-//     this.incrementPage();
-//     return comments;
-//   }
-
-//   async addReview(review) {
-//     const options = {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(review),
-//     };
-
+//   try {
 //     const response = await fetch(`${BASE_URL}/comments`, options);
 //     const newReview = await response.json();
 //     return newReview;
+//   } catch (error) {
+//     console.log(error);
 //   }
+// };
 
-//   incrementPage() {
-//     this.page += 1;
+// const removeReview = async reviewId => {
+//   const url = `${BASE_URL}/comments/${reviewId}`;
+//   const options = {
+//     method: 'DELETE',
+//   };
+//   try {
+//     const response = await fetch(url, options);
+//     const review = await response.json();
+//     return review;
+//   } catch (error) {
+//     console.log(error);
 //   }
+// };
 
-//   resetPage() {
-//     this.page = 1;
+// const updateReviewById = async (update, reviewId) => {
+//   const options = {
+//     method: 'PATCH',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(update),
+//   };
+
+//   try {
+//     const response = await fetch(`${BASE_URL}/comments/${reviewId}`, options);
+//     const review = await response.json();
+//     return review;
+//   } catch (error) {
+//     console.log(error);
 //   }
-// }
+// };
+
+// const fetchReviewById = async reviewId => {
+//   try {
+//     const response = await fetch(`${BASE_URL}/comments/${reviewId}`);
+//     const review = await response.json();
+//     return review;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// const reviewsApiService = {
+//   fetchReviews,
+//   addReview,
+//   removeReview,
+//   updateReviewById,
+//   fetchReviewById,
+// };
+
+// export default reviewsApiService;
+
+/////////////////
+
+const API_KEY = '63469c5f745bd0dbd381d6c4';
+const BASE_URL = `https://${API_KEY}.mockapi.io`;
+let currentPage = 1;
+
+export default class ReviewsApiService {
+  constructor() {
+    this.page = 1;
+    this.id = '';
+  }
+
+  // async fetchReviews() {
+  //   const url = `${BASE_URL}/comments?page=${this.page}`;
+
+  //   const response = await fetch(url);
+  //   const { comments } = await response.json();
+  //   this.incrementPage();
+  //   return comments;
+  // }
+
+  fetchReviews() {
+    return fetch(`${BASE_URL}/comments?page=${this.page}&l=2`)
+      .then(response => response.json())
+      .then(results => {
+        console.log(results);
+        return results;
+      });
+  }
+
+  fetchReviewsPagination(currentPage) {
+    return fetch(`${BASE_URL}/comments?page=${this.page}`)
+      .then(response => response.json())
+      .then(results => {
+        return results;
+      })
+      .catch(error => console.log(error));
+  }
+
+  async addReview(review) {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(review),
+    };
+
+    const response = await fetch(`${BASE_URL}/comments`, options);
+    const newReview = await response.json();
+    return newReview;
+  }
+
+  incrementPage() {
+    this.page += 1;
+  }
+
+  resetPage() {
+    this.page = 1;
+  }
+
+  get pageNum() {
+    return this.page;
+  }
+
+  set pageNum(newPage) {
+    this.page = newPage;
+  }
+}
