@@ -87,7 +87,7 @@
 
 const API_KEY = '63469c5f745bd0dbd381d6c4';
 const BASE_URL = `https://${API_KEY}.mockapi.io`;
-let currentPage = 1;
+// let currentPage = 1;
 
 export default class ReviewsApiService {
   constructor() {
@@ -95,31 +95,20 @@ export default class ReviewsApiService {
     this.id = '';
   }
 
-  // async fetchReviews() {
-  //   const url = `${BASE_URL}/comments?page=${this.page}`;
-
-  //   const response = await fetch(url);
-  //   const { comments } = await response.json();
-  //   this.incrementPage();
-  //   return comments;
-  // }
-
-  fetchReviews() {
-    return fetch(`${BASE_URL}/comments?page=${this.page}&l=2`)
-      .then(response => response.json())
-      .then(results => {
-        console.log(results);
-        return results;
-      });
+  async fetchReviews() {
+    const response = await fetch(`${BASE_URL}/comments?page=${this.page}&l=2`);
+    const results = await response.json();
+    return results;
   }
 
-  fetchReviewsPagination(currentPage) {
-    return fetch(`${BASE_URL}/comments?page=${this.page}`)
-      .then(response => response.json())
-      .then(results => {
-        return results;
-      })
-      .catch(error => console.log(error));
+  async fetchReviewsPagination() {
+    try {
+      const response = await fetch(`${BASE_URL}/comments?page=${this.page}`);
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      return console.log(error);
+    }
   }
 
   async addReview(review) {
@@ -131,13 +120,21 @@ export default class ReviewsApiService {
       body: JSON.stringify(review),
     };
 
-    const response = await fetch(`${BASE_URL}/comments`, options);
-    const newReview = await response.json();
-    return newReview;
+    try {
+      const response = await fetch(`${BASE_URL}/comments`, options);
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      return console.log(error);
+    }
   }
 
   incrementPage() {
     this.page += 1;
+  }
+
+  decrementPage() {
+    this.page -= 1;
   }
 
   resetPage() {

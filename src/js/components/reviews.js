@@ -149,7 +149,7 @@ const reviewsApiService = new ReviewsApiService();
 
 const refs = getRefs();
 
-let currentPage = 1;
+let currentPage = reviewsApiService.page;
 let pages = 2;
 let pageCount;
 let pagesSeach = 5;
@@ -172,8 +172,8 @@ function renderPagination(totalPages, result) {
     container.innerHTML = '';
     pageCount = totalPages;
 
-    let maxLeftPage = currentPage - Math.floor(pagesSeach / 1);
-    let maxRightPage = currentPage + Math.floor(pagesSeach / 1);
+    let maxLeftPage = currentPage - Math.floor(pagesSeach / 2);
+    let maxRightPage = currentPage + Math.floor(pagesSeach / 2);
 
     if (maxLeftPage < 1) {
       maxLeftPage = 1;
@@ -205,11 +205,12 @@ function renderPagination(totalPages, result) {
       }
 
       if (
-        totalPages >= 6 &&
+        totalPages > 6 &&
         i == 1 &&
         currentPage !== 1 &&
         currentPage !== 2 &&
-        currentPage !== 3
+        currentPage !== 3 &&
+        currentPage !== 4
       ) {
         const dotsEl = addDotsContainer();
         container.insertBefore(dotsEl, container[container.length - 2]);
@@ -220,7 +221,8 @@ function renderPagination(totalPages, result) {
         i == pageCount - 1 &&
         currentPage !== pageCount &&
         currentPage !== pageCount - 2 &&
-        currentPage !== pageCount - 1
+        currentPage !== pageCount - 1 &&
+        currentPage !== pageCount - 3
       ) {
         const dotsEl = addDotsContainer();
         container.insertBefore(dotsEl, container[1]);
@@ -237,64 +239,64 @@ function renderPagination(totalPages, result) {
 
   function paginationButton(page, items) {
     let button = document.createElement('button');
-    button.innerText = page;
+    // button.innerText = page;
     button.setAttribute('aria-label', 'Page ' + page);
+    button.setAttribute('data-reviews', '#reviews');
     button.className = `page__number--reviews`;
-    if (currentPage == page) {
+    makeScrollIntoAnchors('reviews');
+
+    if (currentPage === page) {
       button.classList.add('active');
     }
 
     button.addEventListener('click', function () {
-      makeScrollIntoAnchors('reviews');
-      // window.scrollTo({ top: 0, behavior: 'smooth' });
       currentPage = page;
 
       let currentBtn = document.querySelector(
         '.pages__numbers--reviews button.active'
       );
       currentBtn.addEventListener('click', createListPage(currentPage));
-
-      arrowLeft.addEventListener('click', createListPage(currentPage - 1));
-      arrowRight.addEventListener('click', createListPage(currentPage));
+      // arrowLeft.addEventListener('click', createListPage(currentPage - 1));
+      // arrowRight.addEventListener('click', createListPage(currentPage));
 
       currentBtn.classList.remove('active');
       button.classList.add('active');
       createPagination(result, paginationEl, pages);
     });
+
     return button;
   }
 
   function onClickArrowLeft() {
     if (currentPage > 1) {
       makeScrollIntoAnchors('reviews');
-      // window.scrollTo({ top: 0, behavior: 'smooth' });
       currentPage -= 1;
+
       createPagination(result, paginationEl, pages);
       createListPage(currentPage);
-      console.log(currentPage);
     }
-    //disableArrowBtn(totalPages);
+    disableArrowBtn(totalPages);
   }
 
   function onClickArrowRight() {
     if (currentPage < totalPages) {
       makeScrollIntoAnchors('reviews');
-      // window.scrollTo({ top: 0, behavior: 'smooth' });
       currentPage += 1;
-      createPagination(result, paginationEl, pages - 1);
+
+      createPagination(result, paginationEl, pages);
       createListPage(currentPage);
     }
-    //disableArrowBtn(totalPages);
+    disableArrowBtn(totalPages);
   }
 
   createPagination(result, paginationEl, pages);
-  //disableArrowBtn(totalPages);
+  disableArrowBtn(totalPages);
 }
 
 paginationEl.addEventListener('click', disableArrowBtnAfterPageClick);
 
 function disableArrowBtnAfterPageClick(event) {
-  if (event.target.tagName != 'BUTTON') {
+  if (event.target.tagName !== 'BUTTON') {
     return;
   } else {
     disableArrowBtn(pageCount);
@@ -315,8 +317,7 @@ function disableArrowBtn(totalPages) {
   }
 }
 
-////
-
+// перший рендер першої сторінки
 createListPage(currentPage);
 renderPaginationReviews();
 
@@ -324,7 +325,6 @@ function renderPaginationReviews() {
   reviewsApiService
     .fetchReviewsPagination()
     .then(comments => {
-      console.log(comments);
       renderPagination(Math.ceil(comments.length / 2), comments);
     })
     .catch(error => console.log(error));
@@ -333,7 +333,7 @@ function renderPaginationReviews() {
 function createListPage(currentPage) {
   showSpinner();
   reviewsApiService.page = currentPage;
-  if (currentPage === 1) {
+  if (currentPage == 1) {
     reviewsApiService
       .fetchReviews()
       .then(createReviewsMarkUp)
@@ -351,18 +351,13 @@ function createListPage(currentPage) {
   }
 }
 
-//////////
-
+// функція створення розмітки з отриманих даних по шаблону
 function createReviewsMarkUp(reviewsInfo) {
   refs.reviews.innerHTML = '';
   refs.reviews.insertAdjacentHTML('beforeend', reviewsTemplate(reviewsInfo));
 }
 
-function clearPaginationEl() {
-  paginationPages.innerHTML = '';
-}
-
-////////////
+// робота з додаванням review через форму і POST-запит
 refs.formReviews.addEventListener('submit', onSubmitReview);
 refs.formReviews.addEventListener('input', throttle(onInputChangeReview, 200));
 
@@ -382,17 +377,20 @@ async function addNewReviewMarkup(author, text) {
   const newReview = {
     photo: defaultPhoto,
     author,
-    // author: refs.formReviews.name.value,
     text,
-    // text: refs.formReviews.message.value,
     date: formatDate,
   };
 
+  showSpinner();
   try {
     const reviewInfo = await reviewsApiService.addReview(newReview);
+    createListPage(currentPage);
+    renderPaginationReviews();
     createReviewsMarkUp([reviewInfo]);
   } catch (error) {
     console.log(error);
+  } finally {
+    hideSpinner();
   }
 }
 
