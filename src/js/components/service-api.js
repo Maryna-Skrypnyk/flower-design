@@ -1,6 +1,8 @@
-const API_KEY = '63469c5f745bd0dbd381d6c4';
-const BASE_URL = `https://${API_KEY}.mockapi.io`;
-// let currentPage = 1;
+// const API_KEY = '63469c5f745bd0dbd381d6c4';
+// const BASE_URL = `https://${API_KEY}.mockapi.io`;
+let currentPage = 1;
+
+const BASE_URL = 'https://63469c5f745bd0dbd381d6c4.mockapi.io';
 
 export default class ReviewsApiService {
   constructor() {
