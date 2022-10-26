@@ -76,6 +76,7 @@
 }
 
 .reviews__author {
+  position: relative;
   padding: 9px 0 9px;
   font-weight: 600;
   font-size: 13px;
@@ -90,17 +91,19 @@
 .reviews__text {
   @media screen and (min-width: $tablet-min) {
     padding-bottom: 7px;
+  }
+}
 
-    &::after {
-      position: absolute;
-      content: '';
-      bottom: 30px;
-      left: 0;
-      width: 20px;
-      height: 0;
-      border: 1px solid $accent-pink-color;
-      background-color: $accent-pink-color;
-      border-radius: 20px;
-    }
+.reviews__date {
+  &::before {
+    position: absolute;
+    content: '';
+    bottom: 30px;
+    left: 0;
+    width: 20px;
+    height: 0;
+    border: 1px solid $accent-pink-color;
+    background-color: $accent-pink-color;
+    border-radius: 20px;
   }
 }

@@ -1,6 +1,6 @@
 // const API_KEY = '63469c5f745bd0dbd381d6c4';
 // const BASE_URL = `https://${API_KEY}.mockapi.io`;
-let currentPage = 1;
+// let currentPage = 1;
 
 const BASE_URL = 'https://63469c5f745bd0dbd381d6c4.mockapi.io';
 
@@ -11,14 +11,14 @@ export default class ReviewsApiService {
   }
 
   async fetchReviews() {
-    const response = await fetch(`${BASE_URL}/comments?page=${this.page}&l=2`);
+    const response = await fetch(`${BASE_URL}/reviews?page=${this.page}&l=2`);
     const results = await response.json();
     return results;
   }
 
   async fetchReviewsPagination() {
     try {
-      const response = await fetch(`${BASE_URL}/comments?page=${this.page}`);
+      const response = await fetch(`${BASE_URL}/reviews?page=${this.page}`);
       const results = await response.json();
       return results;
     } catch (error) {
@@ -36,7 +36,7 @@ export default class ReviewsApiService {
     };
 
     try {
-      const response = await fetch(`${BASE_URL}/comments`, options);
+      const response = await fetch(`${BASE_URL}/reviews`, options);
       const results = await response.json();
       return results;
     } catch (error) {
