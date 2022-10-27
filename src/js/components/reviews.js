@@ -1,8 +1,8 @@
 import getRefs from '../refs';
-import ReviewsApiService from './service-api';
+import ReviewsApiService from './reviews-api';
 import reviewsTemplate from '../../templates/reviews.hbs';
 import { makeScrollIntoAnchors } from './scroll';
-import { hideSpinner, showSpinner } from '../components/spinner';
+import { hideSpinner, showSpinner } from './spinner';
 import { toast } from './toast';
 import throttle from 'lodash.throttle';
 const LOCAL_STORAGE_KEY_REVIEW = 'reviewKey';
@@ -17,18 +17,20 @@ const reviewsApiService = new ReviewsApiService();
 const refs = getRefs();
 
 let currentPage = reviewsApiService.page;
-let pages = 2;
+let pages = reviewsApiService.limit;
+// let pages = 2;
 let pageCount;
 let pagesSeach = 5;
 
-function resetCurrentPage() {
-  // currentPage = 1;
-  reviewsApiService.resetPage();
-}
+// function resetCurrentPage() {
+//   // currentPage = 1;
+//   reviewsApiService.resetPage();
+// }
 
 function renderPagination(totalPages, result) {
   paginationEl.innerHTML = '';
-  resetCurrentPage();
+  reviewsApiService.resetPage();
+  // resetCurrentPage();
 
   arrowLeft.onclick = onClickArrowLeft;
   arrowRight.onclick = onClickArrowRight;
@@ -101,6 +103,7 @@ function renderPagination(totalPages, result) {
     const dots = document.createElement('div');
     dots.classList.add('dots');
     dots.innerText = '...';
+    dots.style.color = '#ffc2c7';
     return dots;
   }
 
@@ -192,7 +195,10 @@ function renderPaginationReviews() {
   reviewsApiService
     .fetchReviewsPagination()
     .then(comments => {
-      renderPagination(Math.ceil(comments.length / 2), comments);
+      renderPagination(
+        Math.ceil(comments.length / reviewsApiService.limit),
+        comments
+      );
     })
     .catch(error => console.log(error));
 }
