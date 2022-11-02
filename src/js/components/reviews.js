@@ -1,36 +1,29 @@
 import getRefs from '../refs';
-import ReviewsApiService from './reviews-api';
+import ApiService from './service-api';
 import reviewsTemplate from '../../templates/reviews.hbs';
 import { makeScrollIntoAnchors } from './scroll';
 import { hideSpinner, showSpinner } from './spinner';
+import { getDateToday } from './getDateToday';
 import { toast } from './toast';
 import throttle from 'lodash.throttle';
 const LOCAL_STORAGE_KEY_REVIEW = 'reviewKey';
 
 const arrowLeft = document.getElementById(`prev__button--reviews`),
   arrowRight = document.getElementById(`next__button--reviews`),
-  paginationEl = document.getElementById(`pagination-reviews`),
-  paginationPages = document.querySelector('.pagination__pages--reviews');
+  paginationEl = document.getElementById(`pagination-reviews`);
 
-const reviewsApiService = new ReviewsApiService();
+const reviewsApiService = new ApiService();
 
 const refs = getRefs();
 
 let currentPage = reviewsApiService.page;
-let pages = reviewsApiService.limit;
-// let pages = 2;
+let pages = reviewsApiService.reviewsLimit;
 let pageCount;
 let pagesSeach = 5;
-
-// function resetCurrentPage() {
-//   // currentPage = 1;
-//   reviewsApiService.resetPage();
-// }
 
 function renderPagination(totalPages, result) {
   paginationEl.innerHTML = '';
   reviewsApiService.resetPage();
-  // resetCurrentPage();
 
   arrowLeft.onclick = onClickArrowLeft;
   arrowRight.onclick = onClickArrowRight;
@@ -139,8 +132,8 @@ function renderPagination(totalPages, result) {
 
   function onClickArrowLeft() {
     if (currentPage > 1) {
-      makeScrollIntoAnchors('reviews');
       currentPage -= 1;
+      makeScrollIntoAnchors('reviews');
 
       createPagination(result, paginationEl, pages);
       createListPage(currentPage);
@@ -150,8 +143,8 @@ function renderPagination(totalPages, result) {
 
   function onClickArrowRight() {
     if (currentPage < totalPages) {
-      makeScrollIntoAnchors('reviews');
       currentPage += 1;
+      makeScrollIntoAnchors('reviews');
 
       createPagination(result, paginationEl, pages);
       createListPage(currentPage);
@@ -196,7 +189,7 @@ function renderPaginationReviews() {
     .fetchReviewsPagination()
     .then(comments => {
       renderPagination(
-        Math.ceil(comments.length / reviewsApiService.limit),
+        Math.ceil(comments.length / reviewsApiService.reviewsLimit),
         comments
       );
     })
@@ -205,23 +198,13 @@ function renderPaginationReviews() {
 
 function createListPage(currentPage) {
   showSpinner();
-  reviewsApiService.page = currentPage;
-  if (currentPage == 1) {
-    reviewsApiService
-      .fetchReviews()
-      .then(createReviewsMarkUp)
-      .catch(error => console.log('error', error))
-      .finally(hideSpinner);
-    return;
-  }
-
-  if (currentPage > 1) {
-    reviewsApiService
-      .fetchReviews()
-      .then(createReviewsMarkUp)
-      .catch(error => console.log('error', error))
-      .finally(hideSpinner);
-  }
+  reviewsApiService.pageNum = currentPage;
+  reviewsApiService
+    .fetchReviews()
+    .then(createReviewsMarkUp)
+    .catch(error => console.log('error', error))
+    .finally(hideSpinner);
+  return;
 }
 
 // функція створення розмітки з отриманих даних по шаблону
@@ -235,15 +218,6 @@ refs.formReviews.addEventListener('submit', onSubmitReview);
 refs.formReviews.addEventListener('input', throttle(onInputChangeReview, 200));
 
 async function addNewReviewMarkup(author, text) {
-  const date = new Date();
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  const formatDay = String(day);
-  const formatMonth = month < 10 ? `0${String(month)}` : String(month);
-  const formatYear = String(year).slice(-2);
-  const formatDate = `${formatDay}.${formatMonth}.${formatYear}`;
-
   const defaultPhoto =
     'https://cdn2.iconfinder.com/data/icons/avatar-profile/449/avatar_user_default_contact_profile_male-1024.png';
 
@@ -251,7 +225,7 @@ async function addNewReviewMarkup(author, text) {
     photo: defaultPhoto,
     author,
     text,
-    date: formatDate,
+    date: getDateToday(),
   };
 
   showSpinner();

@@ -1,57 +1,25 @@
-// import catalogTemplate from '../../templates/catalog-card.hbs';
-// import catalogData from '../../data/catalog.json';
-// import getRefs from '../refs';
-// import { makePagination } from './pagination';
-// import '../../sass/index.scss';
-
-// const refs = getRefs();
-// refs.catalog.insertAdjacentHTML('beforeend', catalogTemplate(catalogData));
-
-// // об'єкт налаштувань пагінації catalog
-
-// const paginationOptionsCatalog = {
-//   limit: 6,
-//   paginationName: 'catalog',
-// };
-
-// const { limit, paginationName } = paginationOptionsCatalog;
-
-// // виклик функції пагінації
-// makePagination(limit, paginationName);
-
-////////////////
-
 import getRefs from '../refs';
-import CatalogApiService from './catalog-api';
+import ApiService from './service-api';
 import catalogTemplate from '../../templates/catalog-card.hbs';
 import { makeScrollIntoAnchors } from './scroll';
 import { hideSpinner, showSpinner } from './spinner';
-// import { toast } from './toast';
 
 const arrowLeft = document.getElementById(`prev__button--catalog`),
   arrowRight = document.getElementById(`next__button--catalog`),
-  paginationEl = document.getElementById(`pagination-catalog`),
-  paginationPages = document.querySelector('.pagination__pages--catalog');
+  paginationEl = document.getElementById(`pagination-catalog`);
 
-const catalogApiService = new CatalogApiService();
+const catalogApiService = new ApiService();
 
 const refs = getRefs();
 
 let currentPage = catalogApiService.page;
-let pages = catalogApiService.limit;
-// let pages = 6;
+let pages = catalogApiService.catalogLimit;
 let pageCount;
 let pagesSeach = 5;
-
-// function resetCurrentPage() {
-//   // currentPage = 1;
-//   catalogApiService.resetPage();
-// }
 
 function renderPagination(totalPages, result) {
   paginationEl.innerHTML = '';
   catalogApiService.resetPage();
-  // resetCurrentPage();
 
   arrowLeft.onclick = onClickArrowLeft;
   arrowRight.onclick = onClickArrowRight;
@@ -217,7 +185,7 @@ function renderPaginationCatalog() {
     .fetchCatalogPagination()
     .then(catalog => {
       renderPagination(
-        Math.ceil(catalog.length / catalogApiService.limit),
+        Math.ceil(catalog.length / catalogApiService.catalogLimit),
         catalog
       );
     })
@@ -226,23 +194,13 @@ function renderPaginationCatalog() {
 
 function createListPage(currentPage) {
   showSpinner();
-  catalogApiService.page = currentPage;
-  if (currentPage == 1) {
-    catalogApiService
-      .fetchCatalog()
-      .then(createCatalogMarkUp)
-      .catch(error => console.log('error', error))
-      .finally(hideSpinner);
-    return;
-  }
-
-  if (currentPage > 1) {
-    catalogApiService
-      .fetchCatalog()
-      .then(createCatalogMarkUp)
-      .catch(error => console.log('error', error))
-      .finally(hideSpinner);
-  }
+  catalogApiService.pageNum = currentPage;
+  catalogApiService
+    .fetchCatalog()
+    .then(createCatalogMarkUp)
+    .catch(error => console.log('error', error))
+    .finally(hideSpinner);
+  return;
 }
 
 // функція створення розмітки з отриманих даних по шаблону

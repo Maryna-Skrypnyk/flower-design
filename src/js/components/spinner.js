@@ -1,12 +1,13 @@
-const spinnerRef = document.querySelector('.spinner');
+import getRefs from '../refs';
+const refs = getRefs();
 
 function showSpinner() {
-  spinnerRef.classList.add('is-open');
+  refs.spinner.classList.add('is-open');
 }
 
 function hideSpinner() {
   setTimeout(function () {
-    spinnerRef.classList.remove('is-open');
+    refs.spinner.classList.remove('is-open');
   }, 200);
 }
 

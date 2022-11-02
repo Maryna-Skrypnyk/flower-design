@@ -1,19 +1,16 @@
-// const API_KEY = '63469c5f745bd0dbd381d6c4';
-// const BASE_URL = `https://${API_KEY}.mockapi.io`;
-// let currentPage = 1;
+const API_KEY = '63469c5f745bd0dbd381d6c4';
+const BASE_URL = `https://${API_KEY}.mockapi.io`;
 
-const BASE_URL = 'https://63469c5f745bd0dbd381d6c4.mockapi.io';
-
-export default class ReviewsApiService {
+export default class ApiService {
   constructor() {
     this.page = 1;
-    this.id = '';
-    this.limit = 2;
+    this.catalogLimit = 6;
+    this.reviewsLimit = 2;
   }
 
   async fetchReviews() {
     const response = await fetch(
-      `${BASE_URL}/reviews?page=${this.page}&l=${this.limit}`
+      `${BASE_URL}/reviews?page=${this.page}&l=${this.reviewsLimit}`
     );
     const results = await response.json();
     return results;
@@ -47,12 +44,22 @@ export default class ReviewsApiService {
     }
   }
 
-  incrementPage() {
-    this.page += 1;
+  async fetchCatalog() {
+    const response = await fetch(
+      `${BASE_URL}/catalog?page=${this.page}&l=${this.catalogLimit}`
+    );
+    const results = await response.json();
+    return results;
   }
 
-  decrementPage() {
-    this.page -= 1;
+  async fetchCatalogPagination() {
+    try {
+      const response = await fetch(`${BASE_URL}/catalog?page=${this.page}`);
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      return console.log(error);
+    }
   }
 
   resetPage() {
@@ -65,13 +72,5 @@ export default class ReviewsApiService {
 
   set pageNum(newPage) {
     this.page = newPage;
-  }
-
-  get limitNum() {
-    return this.limit;
-  }
-
-  set limitNum(newLimit) {
-    this.limit = newLimit;
   }
 }
