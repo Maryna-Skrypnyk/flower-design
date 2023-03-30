@@ -159,6 +159,7 @@ function renderPagination(totalPages, result) {
 paginationEl.addEventListener('click', disableArrowBtnAfterPageClick);
 
 function disableArrowBtnAfterPageClick(event) {
+  makeScrollIntoAnchors('reviews');
   if (event.target.tagName !== 'BUTTON') {
     return;
   } else {
@@ -170,13 +171,17 @@ function disableArrowBtnAfterPageClick(event) {
 function disableArrowBtn(totalPages) {
   if (currentPage === 1) {
     arrowLeft.classList.add('disabled');
+    arrowLeft.setAttribute('disabled', true);
   } else {
     arrowLeft.classList.remove('disabled');
+    arrowLeft.removeAttribute('disabled');
   }
   if (currentPage === totalPages) {
     arrowRight.classList.add('disabled');
+    arrowRight.setAttribute('disabled', true);
   } else {
     arrowRight.classList.remove('disabled');
+    arrowRight.removeAttribute('disabled');
   }
 }
 
