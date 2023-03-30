@@ -106,7 +106,7 @@ function renderPagination(totalPages, result) {
     button.setAttribute('aria-label', 'Page ' + page);
     button.setAttribute('data-reviews', '#reviews');
     button.className = `page__number--reviews`;
-    makeScrollIntoAnchors('reviews');
+    // makeScrollIntoAnchors('reviews');
 
     if (currentPage === page) {
       button.classList.add('active');
@@ -114,14 +114,12 @@ function renderPagination(totalPages, result) {
 
     button.addEventListener('click', function () {
       currentPage = page;
-
       let currentBtn = document.querySelector(
         '.pages__numbers--reviews button.active'
       );
       currentBtn.addEventListener('click', createListPage(currentPage));
       // arrowLeft.addEventListener('click', createListPage(currentPage - 1));
       // arrowRight.addEventListener('click', createListPage(currentPage));
-
       currentBtn.classList.remove('active');
       button.classList.add('active');
       createPagination(result, paginationEl, pages);
@@ -151,7 +149,6 @@ function renderPagination(totalPages, result) {
     }
     disableArrowBtn(totalPages);
   }
-
   createPagination(result, paginationEl, pages);
   disableArrowBtn(totalPages);
 }
@@ -159,7 +156,7 @@ function renderPagination(totalPages, result) {
 paginationEl.addEventListener('click', disableArrowBtnAfterPageClick);
 
 function disableArrowBtnAfterPageClick(event) {
-  makeScrollIntoAnchors('reviews');
+  // makeScrollIntoAnchors('reviews');
   if (event.target.tagName !== 'BUTTON') {
     return;
   } else {
@@ -169,6 +166,7 @@ function disableArrowBtnAfterPageClick(event) {
 
 // неактивні стрілки на першій і останній сторінці
 function disableArrowBtn(totalPages) {
+  makeScrollIntoAnchors('reviews');
   if (currentPage === 1) {
     arrowLeft.classList.add('disabled');
     arrowLeft.setAttribute('disabled', true);

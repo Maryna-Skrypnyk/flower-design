@@ -155,7 +155,7 @@ function renderPagination(totalPages, result) {
 paginationEl.addEventListener('click', disableArrowBtnAfterPageClick);
 
 function disableArrowBtnAfterPageClick(event) {
-  makeScrollIntoAnchors('catalog');
+  // makeScrollIntoAnchors('catalog');
   if (event.target.tagName !== 'BUTTON') {
     return;
   } else {
@@ -165,6 +165,7 @@ function disableArrowBtnAfterPageClick(event) {
 
 // неактивні стрілки на першій і останній сторінці
 function disableArrowBtn(totalPages) {
+  makeScrollIntoAnchors('catalog');
   if (currentPage === 1) {
     arrowLeft.classList.add('disabled');
     arrowLeft.setAttribute('disabled', true);
