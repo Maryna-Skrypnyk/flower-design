@@ -155,7 +155,6 @@ function renderPagination(totalPages, result) {
 paginationEl.addEventListener('click', disableArrowBtnAfterPageClick);
 
 function disableArrowBtnAfterPageClick(event) {
-  // makeScrollIntoAnchors('catalog');
   if (event.target.tagName !== 'BUTTON') {
     return;
   } else {
