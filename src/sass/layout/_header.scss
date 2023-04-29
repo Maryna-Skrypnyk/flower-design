@@ -45,7 +45,7 @@
   height: 100%;
 
   &--search,
-  &--baket {
+  &--basket {
     display: inline-flex;
     padding: 20px 0;
     margin: 0;
@@ -69,7 +69,7 @@
     }
   }
 
-  &--baket {
+  &--basket {
     margin-left: 13px;
     color: $white-color;
     cursor: url(../images/cursor.svg) 0 0, auto;
@@ -81,7 +81,7 @@
 }
 
 .icon-search,
-.icon-baket {
+.icon-basket {
   fill: currentColor;
   border: none;
 }
