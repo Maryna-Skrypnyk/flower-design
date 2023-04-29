@@ -9,5 +9,6 @@ export default function getRefs() {
     reviews: document.querySelector('.js-reviews'),
     formReviews: document.querySelector('#form-reviews'),
     spinner: document.querySelector('.spinner'),
+    addToBasket: document.querySelectorAll('js-add-to-basket'),
   };
 }
