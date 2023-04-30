@@ -73,6 +73,7 @@
     margin-left: 13px;
     color: $white-color;
     cursor: url(../images/cursor.svg) 0 0, auto;
+    outline: none;
 
     @media screen and (min-width: $tablet-min) {
       margin-left: 15px;

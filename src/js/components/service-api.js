@@ -6,6 +6,7 @@ export default class ApiService {
     this.page = 1;
     this.catalogLimit = 6;
     this.reviewsLimit = 2;
+    // this.id = '';
   }
 
   async fetchReviews() {
@@ -61,6 +62,33 @@ export default class ApiService {
       return console.log(error);
     }
   }
+
+  async getFullProductInfo(id) {
+    try {
+      const response = await fetch(`${BASE_URL}/catalog/${id}`);
+      const result = await response.json();
+      // console.log(result);
+      return result;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
+  // getFullProductInfo(id) {
+  //   return fetch(`${BASE_URL}/catalog/${id}`)
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       return data;
+  //     })
+  //     .catch(error => {
+  //       console.error('Error:', error);
+  //     });
+  // }
 
   resetPage() {
     this.page = 1;
