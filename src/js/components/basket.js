@@ -77,6 +77,8 @@ export function displayCart() {
   let cartCost = localStorage.getItem('totalCost');
 
   if (cartItems && productContainer) {
+    document.querySelector('.products-container').style.display = 'block';
+    document.querySelector('.container-basket').style.display = 'none';
     productContainer.innerHTML = '';
     Object.values(cartItems).map(item => {
       productContainer.innerHTML += `
@@ -100,6 +102,8 @@ export function displayCart() {
       <h4 class="basket-total-title">Загальна вартість</h4>
       <h4 class="basket-total">${cartCost},00 грн</h4>
     </div>`;
+  } else {
+    document.querySelector('.products-container').style.display = 'none';
   }
 }
 
