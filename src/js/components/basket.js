@@ -110,20 +110,11 @@ export function displayCart() {
         `;
     });
 
-    productContainer.insertAdjacentHTML(
-      'beforeend',
-      `
+    productContainer.innerHTML += `
     <div class="basket-total-container">
       <h4 class="basket-total-title">Загальна вартість</h4>
       <h4 class="basket-total">${cartCost},00 грн</h4>
-    </div>`
-    );
-
-    // productContainer.innerHTML += `
-    // <div class="basket-total-container">
-    //   <h4 class="basket-total-title">Загальна вартість</h4>
-    //   <h4 class="basket-total">${cartCost},00 грн</h4>
-    // </div>`;
+    </div>`;
   } else {
     document.querySelector('.products-container').style.display = 'none';
   }
