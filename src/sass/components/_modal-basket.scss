@@ -155,10 +155,11 @@
 }
 
 .quantity {
+  display: flex;
+  align-items: center;
+  width: 25%;
+
   @media screen and (min-width: 740px) {
-    display: flex;
-    align-items: center;
-    width: 25%;
     border-bottom: 1px dotted $accent-blue-color;
   }
 
@@ -200,6 +201,7 @@
   justify-content: space-around;
   align-items: center;
   padding-top: 10px;
+  padding-bottom: 10px;
 
   @media screen and (min-width: 740px) {
     display: flex;
@@ -224,10 +226,12 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 0 0;
+  margin-bottom: 30px;
 
   @media screen and (min-width: 740px) {
     justify-content: flex-end;
+    margin-bottom: 40px;
   }
 }
 
@@ -305,6 +309,7 @@
 }
 
 .btn-icon-arrow {
+  display: inline-flex;
   justify-content: space-between;
   cursor: pointer;
   transform: scale(1);
@@ -331,4 +336,26 @@
   width: 24px;
   height: 24px;
   fill: $accent-blue-color;
+}
+
+/* Button actions */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 30px;
+  width: 70%;
+
+  @media screen and (min-width: 740px) {
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+.continue-shoping {
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 740px) {
+    margin-bottom: 0;
+  }
 }

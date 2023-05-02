@@ -69,3 +69,24 @@
     transform: scale(1.08);
   }
 }
+
+.button-fourthly {
+  display: inline-block;
+  min-width: 130px;
+  min-height: 30px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.2;
+  color: $secondary-text-color;
+  background-color: $white-color;
+  border-radius: 50px;
+  border: 2px solid $accent-blue-color;
+  cursor: url(../images/cursor.svg) 0 0, auto;
+  box-shadow: none;
+  @include transition(box-shadow);
+
+  &:hover,
+  &:focus {
+    box-shadow: $shadow-btn-color;
+  }
+}

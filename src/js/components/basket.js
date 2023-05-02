@@ -115,6 +115,12 @@ export function displayCart() {
       <h4 class="basket-total-title">Загальна вартість</h4>
       <h4 class="basket-total">${cartCost},00 грн</h4>
     </div>`;
+
+    productContainer.innerHTML += `
+    <div class="buttons-container">
+      <button type="button" class="button-fourthly continue-shoping">Продовжити покупки</button>
+      <button type="submit" class="button-secondary">Оформити замовлення</button>
+    </div>`;
   } else {
     document.querySelector('.products-container').style.display = 'none';
   }
