@@ -1,5 +1,6 @@
 import getRefs from '../refs';
 import ApiService from './service-api';
+import { iconDeleteProduct, addQuantity, removeQuantity } from './icons';
 
 const refs = getRefs();
 
@@ -82,26 +83,47 @@ export function displayCart() {
     productContainer.innerHTML = '';
     Object.values(cartItems).map(item => {
       productContainer.innerHTML += `
-      <div class="product">
-        <ion-icon name="close-circle"></ion-icon>
-        <img width="30" height="30" src=${item.image}>
-        <span class="product-name">${item.name}</span>
-      </div>
-      <div class="price">${item.price},00 грн</div>
-      <div class="quantity">
-        <ion-icon class="decrease" name="arrow-dropleft-circle"></ion-icon>
-        <span>${item.inCart}</span>
-        <ion-icon class="increase" name="arrow-dropright-circle"></ion-icon>
-      </div>
-      <div class="total">${item.inCart * item.price},00 грн</div>
-      `;
+        <div class="product">
+          <button class="btn-icon" type="button">
+            <svg class="icon-delete-product">
+              ${iconDeleteProduct}
+            </svg>
+          </button>
+          <img width="30" height="30" src=${item.image}>
+          <span class="product-name">${item.name}</span>
+        </div>
+        <div class="price">${item.price},00 грн</div>
+        <div class="quantity">
+          <button class="btn-icon-arrow" type="button">
+            <svg class="icon-arrow">
+              ${removeQuantity}
+            </svg>
+          </button>
+          <span class="quantity-cart">${item.inCart}</span>
+          <button class="btn-icon-arrow" type="button">
+            <svg class="icon-arrow">
+              ${addQuantity}
+            </svg>
+          </button>
+        </div>
+        <div class="total">${item.inCart * item.price},00 грн</div>
+        `;
     });
 
-    productContainer.innerHTML += `
+    productContainer.insertAdjacentHTML(
+      'beforeend',
+      `
     <div class="basket-total-container">
       <h4 class="basket-total-title">Загальна вартість</h4>
       <h4 class="basket-total">${cartCost},00 грн</h4>
-    </div>`;
+    </div>`
+    );
+
+    // productContainer.innerHTML += `
+    // <div class="basket-total-container">
+    //   <h4 class="basket-total-title">Загальна вартість</h4>
+    //   <h4 class="basket-total">${cartCost},00 грн</h4>
+    // </div>`;
   } else {
     document.querySelector('.products-container').style.display = 'none';
   }
