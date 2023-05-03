@@ -332,7 +332,7 @@
   }
 }
 
-.icon-arrow {
+.icon-action {
   width: 24px;
   height: 24px;
   fill: $accent-blue-color;
@@ -352,10 +352,21 @@
   }
 }
 
-.continue-shoping {
+.continue-shopping {
   margin-bottom: 20px;
 
   @media screen and (min-width: 740px) {
     margin-bottom: 0;
+  }
+}
+
+.anchor-continue-shopping {
+  text-decoration: none;
+  color: $secondary-text-color;
+  @include transition(color);
+
+  &:hover,
+  &:focus {
+    color: $accent-blue-color;
   }
 }

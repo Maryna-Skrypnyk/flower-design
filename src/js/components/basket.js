@@ -1,11 +1,20 @@
 import getRefs from '../refs';
 import ApiService from './service-api';
 import { iconDeleteProduct, addQuantity, removeQuantity } from './icons';
-
+import { openModal } from './modal-basket';
 const refs = getRefs();
 
 const productApiService = new ApiService();
 
+const BASKET_KEYS = {
+  ProductsInCart: 'productsInCart',
+  CartNumbers: 'cartNumbers',
+  TotalCost: 'totalCost',
+};
+
+const HIT_PRODUCT_ID = '0';
+
+/* Знаходження об'єкту товару по id та додавання в корзину */
 refs.catalog.addEventListener('click', async e => {
   if (e.target.nodeName !== 'BUTTON') {
     return;
@@ -14,35 +23,51 @@ refs.catalog.addEventListener('click', async e => {
     const productById = await productApiService.getFullProductInfo(idProduct);
     cartNumbers(productById);
     totalCost(productById);
+    openModal();
   }
 });
 
+refs.btnToBasket.addEventListener('click', async e => {
+  if (e.target.nodeName !== 'BUTTON') {
+    return;
+  } else {
+    const productById = await productApiService.getFullProductInfo(
+      HIT_PRODUCT_ID
+    );
+    cartNumbers(productById);
+    totalCost(productById);
+    openModal();
+  }
+});
+
+/* Відображення кількості товарів з локального сховища при першому завантаженні*/
 function onLoadCardNumbers() {
-  let productNumbers = localStorage.getItem('cartNumbers');
+  let productNumbers = localStorage.getItem(BASKET_KEYS.CartNumbers);
   if (productNumbers) {
-    document.querySelector('.basket span').textContent = productNumbers;
+    refs.basketQuantity.textContent = productNumbers;
   }
 }
 
+/* Встановлення і зміна кількості товарів в кошику, збереження в локальне сховище */
 function cartNumbers(product) {
-  let productNumbers = localStorage.getItem('cartNumbers');
+  let productNumbers = localStorage.getItem(BASKET_KEYS.CartNumbers);
   productNumbers = parseInt(productNumbers);
   if (productNumbers) {
-    localStorage.setItem('cartNumbers', productNumbers + 1);
-    document.querySelector('.basket span').textContent = productNumbers + 1;
+    localStorage.setItem(BASKET_KEYS.CartNumbers, productNumbers + 1);
+    refs.basketQuantity.textContent = productNumbers + 1;
   } else {
-    localStorage.setItem('cartNumbers', 1);
-    document.querySelector('.basket span').textContent = 1;
+    localStorage.setItem(BASKET_KEYS.CartNumbers, 1);
+    refs.basketQuantity.textContent = 1;
   }
   setItems(product);
 }
 
+/* Додавання об'єктів товару до локального сховища по id, або зміна кількості доданого */
 function setItems(product) {
-  let cartItems = localStorage.getItem('productsInCart');
+  let cartItems = localStorage.getItem(BASKET_KEYS.ProductsInCart);
   cartItems = JSON.parse(cartItems);
-
-  if (cartItems != null) {
-    if (cartItems[product.id] == undefined) {
+  if (cartItems !== null) {
+    if (cartItems[product.id] === undefined) {
       cartItems = {
         ...cartItems,
         [product.id]: product,
@@ -55,34 +80,37 @@ function setItems(product) {
       [product.id]: product,
     };
   }
-  localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+  localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
 }
 
+/* Підрахунок вартості товарів в корзині та зберігаємо в локальне сховище */
 function totalCost(product) {
-  let cartCost = localStorage.getItem('totalCost');
-
+  let cartCost = localStorage.getItem(BASKET_KEYS.TotalCost);
   if (cartCost) {
     cartCost = parseInt(cartCost);
-    localStorage.setItem('totalCost', cartCost + product.price);
+    localStorage.setItem(BASKET_KEYS.TotalCost, cartCost + product.price);
   } else {
-    localStorage.setItem('totalCost', product.price);
+    localStorage.setItem(BASKET_KEYS.TotalCost, product.price);
   }
 }
 
+/* Відображення розмітки корзини */
 export function displayCart() {
-  let cartItems = localStorage.getItem('productsInCart');
+  let cartItems = localStorage.getItem(BASKET_KEYS.ProductsInCart);
   cartItems = JSON.parse(cartItems);
 
-  let productContainer = document.querySelector('.products');
+  const productsInBasket = document.querySelector('.products');
 
-  let cartCost = localStorage.getItem('totalCost');
+  let cartCost = localStorage.getItem(BASKET_KEYS.TotalCost);
 
-  if (cartItems && productContainer) {
-    document.querySelector('.products-container').style.display = 'block';
-    document.querySelector('.container-basket').style.display = 'none';
-    productContainer.innerHTML = '';
+  if (cartItems && productsInBasket) {
+    refs.productsContainerInBasket.style.display = 'block';
+    refs.containerBasket.style.display = 'none';
+
+    productsInBasket.innerHTML = '';
+
     Object.values(cartItems).map(item => {
-      productContainer.innerHTML += `
+      productsInBasket.innerHTML += `
         <div class="product">
           <button class="btn-icon" type="button">
             <svg class="icon-delete-product">
@@ -95,13 +123,13 @@ export function displayCart() {
         <div class="price">${item.price},00 грн</div>
         <div class="quantity">
           <button class="btn-icon-arrow" type="button">
-            <svg class="icon-arrow">
+            <svg class="icon-action">
               ${removeQuantity}
             </svg>
           </button>
           <span class="quantity-cart">${item.inCart}</span>
           <button class="btn-icon-arrow" type="button">
-            <svg class="icon-arrow">
+            <svg class="icon-action">
               ${addQuantity}
             </svg>
           </button>
@@ -110,19 +138,19 @@ export function displayCart() {
         `;
     });
 
-    productContainer.innerHTML += `
+    productsInBasket.innerHTML += `
     <div class="basket-total-container">
       <h4 class="basket-total-title">Загальна вартість</h4>
       <h4 class="basket-total">${cartCost},00 грн</h4>
-    </div>`;
-
-    productContainer.innerHTML += `
+    </div>
     <div class="buttons-container">
-      <button type="button" class="button-fourthly continue-shoping">Продовжити покупки</button>
+      <button href="#catalog" type="button" class="button-fourthly continue-shopping">
+          Продовжити покупки
+      </button>
       <button type="submit" class="button-secondary">Оформити замовлення</button>
     </div>`;
   } else {
-    document.querySelector('.products-container').style.display = 'none';
+    refs.productsContainerInBasket.style.display = 'none';
   }
 }
 

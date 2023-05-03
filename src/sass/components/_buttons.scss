@@ -71,6 +71,10 @@
 }
 
 .button-fourthly {
+  // @media screen and (max-width: 739px) {
+  //   max-width: 170px;
+  // }
+
   display: inline-block;
   min-width: 130px;
   min-height: 30px;
@@ -81,12 +85,14 @@
   background-color: $white-color;
   border-radius: 50px;
   border: 2px solid $accent-blue-color;
-  cursor: url(../images/cursor.svg) 0 0, auto;
+  // cursor: url(../images/cursor.svg) 0 0, auto;
+  cursor: pointer;
   box-shadow: none;
-  @include transition(box-shadow);
+  @include transition(box-shadow, color);
 
   &:hover,
   &:focus {
     box-shadow: $shadow-btn-color;
+    color: $accent-blue-color;
   }
 }

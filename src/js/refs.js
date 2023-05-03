@@ -10,5 +10,10 @@ export default function getRefs() {
     formReviews: document.querySelector('#form-reviews'),
     spinner: document.querySelector('.spinner'),
     addToBasket: document.querySelectorAll('js-add-to-basket'),
+    basketQuantity: document.querySelector('.basket span'),
+    productsContainerInBasket: document.querySelector('.products-container'),
+    containerBasket: document.querySelector('.container-basket'),
+    modalbackdrop: document.querySelector('.backdrop'),
+    btnToBasket: document.querySelector('.js-button-toBasket'),
   };
 }

@@ -4,7 +4,7 @@
 
 $(document).on(
   'click',
-  'nav a, .hero__buttons a, .footer__item a',
+  'nav a, .hero__buttons .btn-catalog, .footer__item a, .basket-modal button',
   function (e) {
     e.preventDefault();
     var id = $(this).attr('href');

@@ -1,5 +1,13 @@
 [
   {
+    "id": "0",
+    "image": "https://i.ibb.co/Y7jdbq5/bouquet-cart6.png",
+    "name": "Довгоочікуване щастя",
+    "flowers": "кущові троянди",
+    "price": 800,
+    "inCart": 0
+  },
+  {
     "id": "1",
     "image": "https://sf.tac-cdn.net/images/products/large/TEV55-5.jpg",
     "name": "Ніжна свіжість",
