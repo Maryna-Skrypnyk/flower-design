@@ -15,5 +15,6 @@ export default function getRefs() {
     containerBasket: document.querySelector('.container-basket'),
     modalbackdrop: document.querySelector('.backdrop'),
     btnToBasket: document.querySelector('.js-button-toBasket'),
+    productsInBasket: document.querySelector('.products'),
   };
 }

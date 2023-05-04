@@ -5,31 +5,27 @@ const refs = getRefs();
 const btns = {
   openModalBtn: document.querySelector('[data-modal-open]'),
   closeModalBtn: document.querySelector('.basket-modal-close-button'),
+  btnContinueShopping: document.querySelector('.continue-shopping'),
 };
 
 btns.openModalBtn.addEventListener('click', openModal);
 
 export function openModal() {
   displayCart();
-
-  const continueShopping = document.querySelector('.continue-shopping');
-
-  refs.modalbackdrop.classList.remove('is-hidden');
-  window.addEventListener('keydown', onPressEscape);
-  btns.closeModalBtn.addEventListener('click', closeModal);
-  refs.modalbackdrop.addEventListener('click', backdropCloseModal);
-  continueShopping.addEventListener('click', closeModal);
   document.body.classList.add('modal-open');
+  refs.modalbackdrop.classList.remove('is-hidden');
+  btns.closeModalBtn.addEventListener('click', closeModal);
+  btns.btnContinueShopping.addEventListener('click', closeModal);
+  refs.modalbackdrop.addEventListener('click', backdropCloseModal);
+  window.addEventListener('keydown', onPressEscape);
 }
 
 function closeModal() {
-  const continueShopping = document.querySelector('.continue-shopping');
-
   document.body.classList.remove('modal-open');
-  btns.closeModalBtn.removeEventListener('click', closeModal);
   refs.modalbackdrop.classList.add('is-hidden');
-  refs.modalbackdrop.removeEventListener('click', closeModal);
-  continueShopping.removeEventListener('click', closeModal);
+  btns.closeModalBtn.removeEventListener('click', closeModal);
+  btns.btnContinueShopping.removeEventListener('click', closeModal);
+  refs.modalbackdrop.removeEventListener('click', backdropCloseModal);
   window.removeEventListener('keydown', onPressEscape);
 }
 

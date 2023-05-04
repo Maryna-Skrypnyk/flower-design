@@ -99,20 +99,20 @@ export function displayCart() {
   let cartItems = localStorage.getItem(BASKET_KEYS.ProductsInCart);
   cartItems = JSON.parse(cartItems);
 
-  const productsInBasket = document.querySelector('.products');
+  // const productsInBasket = document.querySelector('.products');
 
   let cartCost = localStorage.getItem(BASKET_KEYS.TotalCost);
 
-  if (cartItems && productsInBasket) {
+  if (cartItems && Object.keys(cartItems).length > 0 && refs.productsInBasket) {
     refs.productsContainerInBasket.style.display = 'block';
     refs.containerBasket.style.display = 'none';
 
-    productsInBasket.innerHTML = '';
+    refs.productsInBasket.innerHTML = '';
 
     Object.values(cartItems).map(item => {
-      productsInBasket.innerHTML += `
+      refs.productsInBasket.innerHTML += `
         <div class="product">
-          <button class="btn-icon" type="button">
+          <button class="btn-icon" type="button" data-delete data-id=${item.id}>
             <svg class="icon-delete-product">
               ${iconDeleteProduct}
             </svg>
@@ -138,19 +138,91 @@ export function displayCart() {
         `;
     });
 
-    productsInBasket.innerHTML += `
+    refs.productsInBasket.innerHTML += `
     <div class="basket-total-container">
       <h4 class="basket-total-title">Загальна вартість</h4>
       <h4 class="basket-total">${cartCost},00 грн</h4>
-    </div>
-    <div class="buttons-container">
-      <button href="#catalog" type="button" class="button-fourthly continue-shopping">
-          Продовжити покупки
-      </button>
-      <button type="submit" class="button-secondary">Оформити замовлення</button>
     </div>`;
   } else {
     refs.productsContainerInBasket.style.display = 'none';
+    refs.containerBasket.style.display = 'flex';
+  }
+}
+
+/////
+// Функція для видалення товару з кошика
+function removeProductFromCart(id) {
+  const cartItems =
+    JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
+  delete cartItems[id];
+  localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
+}
+
+/* Оновлення вартості товарів в корзині та збереження в локальне сховище */
+function updateTotalCost() {
+  const cartItems =
+    JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
+
+  if (cartItems) {
+    const totalCost = Object.values(cartItems).reduce(
+      (acc, item) => (acc += item.price * item.inCart),
+      0
+    );
+    localStorage.setItem(BASKET_KEYS.TotalCost, totalCost);
+  }
+
+  // let cartCost = localStorage.getItem(BASKET_KEYS.TotalCost);
+  // if (cartCost) {
+  //   cartCost = parseInt(cartCost);
+  //   localStorage.setItem(
+  //     BASKET_KEYS.TotalCost,
+  //     cartCost - product.price * product.inCart
+  //   );
+  // }
+}
+
+/* Оновлення кількості товарів в кошику, збереження в локальне сховище */
+function updateCartNumbers() {
+  const cartItems =
+    JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
+
+  if (cartItems) {
+    const cartNumbers = Object.values(cartItems).reduce(
+      (acc, item) => (acc += item.inCart),
+      0
+    );
+    localStorage.setItem(BASKET_KEYS.CartNumbers, cartNumbers);
+    refs.basketQuantity.textContent = cartNumbers;
+  }
+
+  // let productNumbers = localStorage.getItem(BASKET_KEYS.CartNumbers);
+  // productNumbers = parseInt(productNumbers);
+  // if (productNumbers) {
+  //   localStorage.setItem(
+  //     BASKET_KEYS.CartNumbers,
+  //     productNumbers - product.inCart
+  //   );
+  //   refs.basketQuantity.textContent = productNumbers - product.inCart;
+  // }
+}
+
+// Подію "click" на весь список продуктів в кошику
+refs.productsInBasket.addEventListener('click', deleteProductFromCart);
+
+function deleteProductFromCart(e) {
+  const cartItems =
+    JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
+
+  // Перевірка, чи була натиснута кнопка видалення
+  const buttonDelete = e.target.closest('button[data-delete]');
+  console.log(buttonDelete);
+  if (buttonDelete) {
+    // Видаляємо товар з кошика та оновлюємо вміст кошика на сторінці
+    const idProduct = buttonDelete.dataset.id;
+    removeProductFromCart(idProduct);
+    updateTotalCost();
+    updateCartNumbers();
+    displayCart();
   }
 }
 
