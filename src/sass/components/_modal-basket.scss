@@ -164,6 +164,9 @@
   }
 
   & .quantity-cart {
+    width: 35px;
+    height: 30px;
+    text-align: center;
     padding: 5px 10px;
     margin: 0 5px;
     border: 1px solid $accent-blue-color;
@@ -189,6 +192,8 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    animation: animate__bounce;
+    animation-duration: 1s;
   }
 
   & img {
