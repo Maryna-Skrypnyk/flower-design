@@ -279,23 +279,31 @@
 }
 
 .basket-empty-title {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   font-size: 24px;
   font-weight: 500;
+
+  @media screen and (min-width: 740px) {
+    margin-bottom: 16px;
+  }
 }
 
 .basket-empty-paragraph {
   font-size: 14px;
   color: #797878;
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 740px) {
+    margin-bottom: 40px;
+  }
 }
 
 .icon-flamingo {
   height: 250px;
-  z-index: 999;
 
   @media screen and (max-width: 767px) {
     position: absolute;
-    top: 300px;
+    top: 350px;
     left: 50%;
     transform: translate(-50%, -50%);
   }

@@ -99,8 +99,6 @@ export function displayCart() {
   let cartItems = localStorage.getItem(BASKET_KEYS.ProductsInCart);
   cartItems = JSON.parse(cartItems);
 
-  // const productsInBasket = document.querySelector('.products');
-
   let cartCost = localStorage.getItem(BASKET_KEYS.TotalCost);
 
   if (cartItems && Object.keys(cartItems).length > 0 && refs.productsInBasket) {
@@ -151,7 +149,7 @@ export function displayCart() {
 
 /* ВИДАЛЕННЯ ТА ОНОВЛЕННЯ ТОВАРІВ У КОШИКУ */
 
-// Функція для видалення товару з кошика
+/* Функція для видалення товару з кошика */
 function removeProductFromCart(id) {
   const cartItems =
     JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
@@ -188,7 +186,7 @@ function updateCartNumbers() {
   }
 }
 
-// Подія "click" на весь список продуктів в кошику
+/* Подія "click" на весь список продуктів в кошику */
 refs.productsInBasket.addEventListener('click', deleteProductFromCart);
 
 function deleteProductFromCart(e) {
@@ -205,25 +203,27 @@ function deleteProductFromCart(e) {
 }
 
 /* РЕАЛІЗАЦІЯ КНОПОК ДОДАВАННЯ/ВІДНІМАННЯ КІЛЬКОСТІ ТОВАРІВ В КОШИКУ */
-function addOneProductToCart(id) {
+
+/* Функція збільшення на одиницю продуктів в кошику */
+function incrementProduct(id) {
   let cartItems =
     JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
   cartItems[id].inCart += 1;
-  // console.log(cartItems[id].inCart);
   localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
 }
 
-function removeOneProductFromCart(id) {
+/* Функція зменшення на одиницю продуктів в кошику */
+function decrementProduct(id) {
   let cartItems =
     JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
   cartItems[id].inCart -= 1;
   if (cartItems[id].inCart === 0) {
     return;
   }
-  // console.log(cartItems[id].inCart);
   localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
 }
 
+/* Подія "click" на весь список продуктів в кошику */
 refs.productsInBasket.addEventListener('click', updateQuantityProductInCart);
 
 function updateQuantityProductInCart(e) {
@@ -233,7 +233,7 @@ function updateQuantityProductInCart(e) {
   if (buttonAdd) {
     // Додавання одиниці товару в кошик по id та оновлення кількості, вартості та загальної вартості
     const idProduct = buttonAdd.parentNode.dataset.id;
-    addOneProductToCart(idProduct);
+    incrementProduct(idProduct);
     updateTotalCost();
     updateCartNumbers();
     displayCart();
@@ -241,7 +241,7 @@ function updateQuantityProductInCart(e) {
   if (buttonRemove) {
     // Додавання одиниці товару в кошик по id та оновлення кількості, вартості та загальної вартості
     const idProduct = buttonRemove.parentNode.dataset.id;
-    removeOneProductFromCart(idProduct);
+    decrementProduct(idProduct);
     updateTotalCost();
     updateCartNumbers();
     displayCart();
