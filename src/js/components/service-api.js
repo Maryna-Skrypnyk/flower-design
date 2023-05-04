@@ -6,7 +6,6 @@ export default class ApiService {
     this.page = 1;
     this.catalogLimit = 6;
     this.reviewsLimit = 2;
-    // this.id = '';
   }
 
   async fetchReviews() {
@@ -56,6 +55,16 @@ export default class ApiService {
   async fetchCatalogPagination() {
     try {
       const response = await fetch(`${BASE_URL}/catalog?page=${this.page}`);
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+
+  async fetchCatalogAll() {
+    try {
+      const response = await fetch(`${BASE_URL}/catalog`);
       const results = await response.json();
       return results;
     } catch (error) {

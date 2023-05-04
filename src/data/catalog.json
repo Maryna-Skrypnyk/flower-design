@@ -4,6 +4,7 @@
     "image": "https://i.ibb.co/Y7jdbq5/bouquet-cart6.png",
     "name": "Довгоочікуване щастя",
     "flowers": "кущові троянди",
+    "type": "живі квіти",
     "price": 800,
     "inCart": 0
   },
@@ -12,6 +13,7 @@
     "image": "https://sf.tac-cdn.net/images/products/large/TEV55-5.jpg",
     "name": "Ніжна свіжість",
     "flowers": "троянди та лілії",
+    "type": "букет",
     "price": 445,
     "inCart": 0
   },
@@ -20,6 +22,7 @@
     "image": "https://cdn.flowers2turkey.com/flower-images/xls/cm407.jpg",
     "name": "Сорбет",
     "flowers": "хризантеми та троянди",
+    "type": "букет",
     "price": 450,
     "inCart": 0
   },
@@ -28,6 +31,7 @@
     "image": "https://sf.tac-cdn.net/images/products/large/FTD-4152.jpg",
     "name": "Yellow song",
     "flowers": "соняшники та солідаго",
+    "type": "свій букет",
     "price": 455,
     "inCart": 0
   },
@@ -36,6 +40,7 @@
     "image": "https://img.teleflora.com/images/o_0/l_flowers:T55-2C_ENV,pg_6/w_460,h_460,cs_no_cmyk,c_pad/f_jpg,q_auto:eco,e_sharpen:200/flowers/T55-2C_ENV/ArriveInStylePM",
     "name": "Персиковий нектар",
     "flowers": "лілії та троянди",
+    "type": "свій букет",
     "price": 455,
     "inCart": 0
   },
@@ -44,6 +49,7 @@
     "image": "https://www.annasflowersandgift.com/assets/1/14/DimLarge/BF86-11KL.jpg?1351",
     "name": "Аврора",
     "flowers": "лілії та троянди",
+    "type": "букет",
     "price": 460,
     "inCart": 0
   },
@@ -52,6 +58,7 @@
     "image": "https://images.squarespace-cdn.com/content/v1/5fd2f40e6abcfa7cc96d9e25/1626114075116-Z7FKS3H1AFBT3ZGRCE7F/AlwaysonMyMindPM-LongStemmedRedRoses.jpeg",
     "name": "Класика кохання",
     "flowers": "червоні троянди",
+    "type": "букет",
     "price": 465,
     "inCart": 0
   },
@@ -60,6 +67,7 @@
     "image": "https://i.ibb.co/qk3WZzd/bouquet-cart1.png",
     "name": "Ніжна свіжість",
     "flowers": "троянди та лілії",
+    "type": "букет",
     "price": 445,
     "inCart": 0
   },
@@ -68,6 +76,7 @@
     "image": "https://i.ibb.co/kSqMtYg/bouquet-cart2.png",
     "name": "Сорбет",
     "flowers": "хризантеми та троянди",
+    "type": "свій букет",
     "price": 450,
     "inCart": 0
   },
@@ -76,6 +85,7 @@
     "image": "https://i.ibb.co/P9mTcQT/bouquet-cart3.png",
     "name": "Yellow song",
     "flowers": "соняшники та солідаго",
+    "type": "живі квіти",
     "price": 455,
     "inCart": 0
   },
@@ -84,6 +94,7 @@
     "image": "https://i.ibb.co/M8NL0gT/bouquet-cart4.png",
     "name": "Персиковий нектар",
     "flowers": "лілії та троянди",
+    "type": "свій букет",
     "price": 455,
     "inCart": 0
   },
@@ -92,6 +103,7 @@
     "image": "https://i.ibb.co/LYMJ9mc/bouquet-cart5.png",
     "name": "Аврора",
     "flowers": "лілії та троянди",
+    "type": "букет",
     "price": 460,
     "inCart": 0
   },
@@ -100,6 +112,7 @@
     "image": "https://i.ibb.co/Y7jdbq5/bouquet-cart6.png",
     "name": "Класика кохання",
     "flowers": "червоні троянди",
+    "type": "букет",
     "price": 465,
     "inCart": 0
   },
@@ -108,6 +121,7 @@
     "image": "https://i.ibb.co/qk3WZzd/bouquet-cart1.png",
     "name": "Ніжна свіжість",
     "flowers": "троянди та лілії",
+    "type": "свій букет",
     "price": 445,
     "inCart": 0
   },
@@ -116,6 +130,7 @@
     "image": "https://i.ibb.co/kSqMtYg/bouquet-cart2.png",
     "name": "Сорбет",
     "flowers": "хризантеми та троянди",
+    "type": "свій букет",
     "price": 450,
     "inCart": 0
   },
@@ -124,6 +139,7 @@
     "image": "https://i.ibb.co/P9mTcQT/bouquet-cart3.png",
     "name": "Yellow song",
     "flowers": "соняшники та солідаго",
+    "type": "живі квіти",
     "price": 455,
     "inCart": 0
   },
@@ -132,6 +148,7 @@
     "image": "https://i.ibb.co/M8NL0gT/bouquet-cart4.png",
     "name": "Персиковий нектар",
     "flowers": "лілії та троянди",
+    "type": "букет",
     "price": 455,
     "inCart": 0
   },
@@ -140,6 +157,7 @@
     "image": "https://i.ibb.co/LYMJ9mc/bouquet-cart5.png",
     "name": "Аврора",
     "flowers": "лілії та троянди",
+    "type": "свій букет",
     "price": 460,
     "inCart": 0
   },
@@ -148,6 +166,7 @@
     "image": "https://i.ibb.co/Y7jdbq5/bouquet-cart6.png",
     "name": "Класика кохання",
     "flowers": "червоні троянди",
+    "type": "букет",
     "price": 465,
     "inCart": 0
   },
@@ -156,6 +175,7 @@
     "image": "https://i.ibb.co/qk3WZzd/bouquet-cart1.png",
     "name": "Ніжна свіжість",
     "flowers": "троянди та лілії",
+    "type": "букет",
     "price": 445,
     "inCart": 0
   },
@@ -164,6 +184,7 @@
     "image": "https://i.ibb.co/kSqMtYg/bouquet-cart2.png",
     "name": "Сорбет",
     "flowers": "хризантеми та троянди",
+    "type": "свій букет",
     "price": 450,
     "inCart": 0
   },
@@ -172,6 +193,7 @@
     "image": "https://i.ibb.co/P9mTcQT/bouquet-cart3.png",
     "name": "Yellow song",
     "flowers": "соняшники та солідаго",
+    "type": "живі квіти",
     "price": 455,
     "inCart": 0
   },
@@ -180,6 +202,7 @@
     "image": "https://i.ibb.co/M8NL0gT/bouquet-cart4.png",
     "name": "Персиковий нектар",
     "flowers": "лілії та троянди",
+    "type": "букет",
     "price": 455,
     "inCart": 0
   },
@@ -188,6 +211,7 @@
     "image": "https://i.ibb.co/LYMJ9mc/bouquet-cart5.png",
     "name": "Аврора",
     "flowers": "лілії та троянди",
+    "type": "свій букет",
     "price": 460,
     "inCart": 0
   },
@@ -196,6 +220,7 @@
     "image": "https://i.ibb.co/Y7jdbq5/bouquet-cart6.png",
     "name": "Класика кохання",
     "flowers": "червоні троянди",
+    "type": "букет",
     "price": 465,
     "inCart": 0
   },
@@ -204,6 +229,7 @@
     "image": "https://i.ibb.co/qk3WZzd/bouquet-cart1.png",
     "name": "Ніжна свіжість",
     "flowers": "троянди та лілії",
+    "type": "букет",
     "price": 445,
     "inCart": 0
   },
@@ -212,6 +238,7 @@
     "image": "https://i.ibb.co/kSqMtYg/bouquet-cart2.png",
     "name": "Сорбет",
     "flowers": "хризантеми та троянди",
+    "type": "свій букет",
     "price": 450,
     "inCart": 0
   },
@@ -220,6 +247,7 @@
     "image": "https://i.ibb.co/P9mTcQT/bouquet-cart3.png",
     "name": "Yellow song",
     "flowers": "соняшники та солідаго",
+    "type": "живі квіти",
     "price": 455,
     "inCart": 0
   },
@@ -228,6 +256,7 @@
     "image": "https://i.ibb.co/M8NL0gT/bouquet-cart4.png",
     "name": "Персиковий нектар",
     "flowers": "лілії та троянди",
+    "type": "букет",
     "price": 455,
     "inCart": 0
   },
@@ -236,6 +265,7 @@
     "image": "https://i.ibb.co/LYMJ9mc/bouquet-cart5.png",
     "name": "Аврора",
     "flowers": "лілії та троянди",
+    "type": "свій букет",
     "price": 460,
     "inCart": 0
   },
@@ -244,6 +274,7 @@
     "image": "https://i.ibb.co/Y7jdbq5/bouquet-cart6.png",
     "name": "Класика кохання",
     "flowers": "червоні троянди",
+    "type": "букет",
     "price": 465,
     "inCart": 0
   }
