@@ -138,8 +138,17 @@ export function displayCart() {
 
     refs.productsInBasket.innerHTML += `
     <div class="basket-total-container">
-      <h4 class="basket-total-title">Загальна вартість</h4>
-      <h4 class="basket-total">${cartCost},00 грн</h4>
+    
+      <button class="btn-icon btn-icon-deleteAll" type="button" data-delete-all>
+          <svg class="icon-delete-product">
+              ${iconDeleteProduct}
+          </svg>
+      </button>
+      
+      
+        <h4 class="basket-total-title">Загальна вартість</h4>
+        <h4 class="basket-total">${cartCost},00 грн</h4>
+      
     </div>`;
   } else {
     refs.productsContainerInBasket.style.display = 'none';
@@ -247,6 +256,18 @@ function updateQuantityProductInCart(e) {
     displayCart();
   }
 }
+
+/* Очищення корзини */
+refs.productsInBasket.addEventListener('click', e => {
+  const buttonDeleteAll = e.target.closest('button[data-delete-all]');
+  if (buttonDeleteAll) {
+    localStorage.removeItem(BASKET_KEYS.ProductsInCart);
+    localStorage.removeItem(BASKET_KEYS.CartNumbers);
+    localStorage.removeItem(BASKET_KEYS.TotalCost);
+    refs.basketQuantity.textContent = 0;
+    displayCart();
+  }
+});
 
 onLoadCardNumbers();
 // displayCart();
