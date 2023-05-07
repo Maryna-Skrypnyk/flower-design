@@ -256,13 +256,17 @@ function updateQuantityProductInCart(e) {
 refs.productsInBasket.addEventListener('click', e => {
   const buttonDeleteAll = e.target.closest('button[data-delete-all]');
   if (buttonDeleteAll) {
-    localStorage.removeItem(BASKET_KEYS.ProductsInCart);
-    localStorage.removeItem(BASKET_KEYS.CartNumbers);
-    localStorage.removeItem(BASKET_KEYS.TotalCost);
-    refs.basketQuantity.textContent = 0;
-    displayCart();
+    clearBasket();
   }
 });
+
+export function clearBasket() {
+  localStorage.removeItem(BASKET_KEYS.ProductsInCart);
+  localStorage.removeItem(BASKET_KEYS.CartNumbers);
+  localStorage.removeItem(BASKET_KEYS.TotalCost);
+  refs.basketQuantity.textContent = 0;
+  displayCart();
+}
 
 onLoadCardNumbers();
 // displayCart();

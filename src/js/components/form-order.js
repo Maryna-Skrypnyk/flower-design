@@ -1,7 +1,6 @@
 import getRefs from '../refs';
-import { displayCart } from './basket';
+import { clearBasket } from './basket';
 import { toast } from './toast';
-import { BASKET_KEYS } from '../../data/data';
 
 const refs = getRefs();
 
@@ -14,10 +13,6 @@ function onFormSubmit(e) {
 }
 
 function cleanBasket() {
-  localStorage.removeItem(BASKET_KEYS.ProductsInCart);
-  localStorage.removeItem(BASKET_KEYS.CartNumbers);
-  localStorage.removeItem(BASKET_KEYS.TotalCost);
-  refs.basketQuantity.textContent = 0;
-  displayCart();
+  clearBasket();
   refs.formOrder.style.display = 'none';
 }
