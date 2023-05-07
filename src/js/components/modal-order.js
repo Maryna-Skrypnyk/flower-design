@@ -28,18 +28,18 @@ function displayCartOrder() {
               <img width="30" height="30" src=${item.image}>
               <span class="product-name">${item.name}</span>
             </div>
-            <div class="price">${item.price},00 грн</div>
+            <div class="price">${item.price},00 &#8372;</div>
             <div class="quantity">
               <span class="quantity-cart">${item.inCart}</span>
             </div>
-            <div class="total">${item.inCart * item.price},00 грн</div>
+            <div class="total">${item.inCart * item.price},00 &#8372;</div>
             `;
     });
 
     refs.productsInBasket.innerHTML += `
         <div class="basket-total-container">
-            <h4 class="basket-total-title">Загальна вартість</h4>
-            <h4 class="basket-total">${cartCost},00 грн</h4>
+            <h4 class="basket-total-title">Замовлення на суму:</h4>
+            <h4 class="basket-total">${cartCost},00 &#8372;</h4>
         </div>`;
     refs.productsInBasket.insertAdjacentElement('afterend', refs.formOrder);
   }

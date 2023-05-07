@@ -113,7 +113,7 @@ export function displayCart() {
           <img width="30" height="30" src=${item.image}>
           <span class="product-name">${item.name}</span>
         </div>
-        <div class="price">${item.price},00 грн</div>
+        <div class="price">${item.price},00 &#8372;</div>
         <div class="quantity" data-id=${item.id}>
           <button class="btn-icon-arrow" data-remove type="button">
             <svg class="icon-action icon-action-remove">
@@ -127,7 +127,7 @@ export function displayCart() {
             </svg>
           </button>
         </div>
-        <div class="total">${item.inCart * item.price},00 грн</div>
+        <div class="total">${item.inCart * item.price},00 &#8372;</div>
         `;
     });
 
@@ -142,7 +142,7 @@ export function displayCart() {
       
       
         <h4 class="basket-total-title">Загальна вартість</h4>
-        <h4 class="basket-total">${cartCost},00 грн</h4>
+        <h4 class="basket-total">${cartCost},00 &#8372;</h4>
       
     </div>`;
   } else {
