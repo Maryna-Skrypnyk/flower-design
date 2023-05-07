@@ -22,5 +22,6 @@ export default function getRefs() {
     btnContinueShopping: document.querySelector('.continue-shopping'),
     formOrder: document.querySelector('.form-order-container'),
     btnFormSubmit: document.querySelector('.button-send'),
+    formBasket: document.querySelector('.form-modal'),
   };
 }

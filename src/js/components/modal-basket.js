@@ -16,20 +16,20 @@ export function openModal() {
   btns.closeModalBtn.addEventListener('click', closeModal);
   refs.btnContinueShopping.style.display = 'inline-block';
   refs.btnOrder.style.display = 'inline-block';
+  refs.formOrder.style.display = 'none';
   refs.btnContinueShopping.addEventListener('click', closeModal);
   refs.btnStartShopping.addEventListener('click', closeModal);
   refs.modalbackdrop.addEventListener('click', backdropCloseModal);
   window.addEventListener('keydown', onPressEscape);
 }
 
-function closeModal() {
+export function closeModal() {
   document.body.classList.remove('modal-open');
   refs.modalbackdrop.classList.add('is-hidden');
   btns.closeModalBtn.removeEventListener('click', closeModal);
   refs.btnContinueShopping.removeEventListener('click', closeModal);
   refs.btnStartShopping.removeEventListener('click', closeModal);
   refs.modalbackdrop.removeEventListener('click', backdropCloseModal);
-
   window.removeEventListener('keydown', onPressEscape);
 }
 

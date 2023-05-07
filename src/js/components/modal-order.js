@@ -29,7 +29,7 @@ function displayCartOrder() {
               <span class="product-name">${item.name}</span>
             </div>
             <div class="price">${item.price},00 грн</div>
-            <div class="quantity" data-id=${item.id}>
+            <div class="quantity">
               <span class="quantity-cart">${item.inCart}</span>
             </div>
             <div class="total">${item.inCart * item.price},00 грн</div>
