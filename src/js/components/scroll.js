@@ -4,7 +4,7 @@
 
 $(document).on(
   'click',
-  'nav a, .hero__buttons .btn-catalog, .footer__item a, .buttons-container button, .start-shopping, button[data-type]',
+  'nav a, .hero__buttons .btn-catalog, .footer__item a, .continue-shopping, .start-shopping, button[data-type]',
   function (e) {
     e.preventDefault();
     var id = $(this).attr('href');

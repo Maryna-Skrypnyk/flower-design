@@ -17,5 +17,10 @@ export default function getRefs() {
     modalbackdrop: document.querySelector('.backdrop'),
     btnToBasket: document.querySelector('.js-button-toBasket'),
     productsInBasket: document.querySelector('.products'),
+    btnOrder: document.querySelector('.btn-order'),
+    btnStartShopping: document.querySelector('.start-shopping'),
+    btnContinueShopping: document.querySelector('.continue-shopping'),
+    formOrder: document.querySelector('.form-order-container'),
+    btnFormSubmit: document.querySelector('.button-send'),
   };
 }

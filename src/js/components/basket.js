@@ -2,17 +2,12 @@ import getRefs from '../refs';
 import ApiService from './service-api';
 import { iconDeleteProduct, addQuantity, removeQuantity } from './icons';
 import { openModal } from './modal-basket';
+import { BASKET_KEYS } from '../../data/data';
+import { HIT_PRODUCT_ID } from '../../data/data';
+
 const refs = getRefs();
 
 const productApiService = new ApiService();
-
-const BASKET_KEYS = {
-  ProductsInCart: 'productsInCart',
-  CartNumbers: 'cartNumbers',
-  TotalCost: 'totalCost',
-};
-
-const HIT_PRODUCT_ID = '0';
 
 /* Знаходження об'єкту товару по id та додавання в корзину */
 refs.catalog.addEventListener('click', async e => {
