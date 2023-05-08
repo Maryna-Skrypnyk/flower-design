@@ -39,7 +39,7 @@ export function validateForm() {
     return false;
   }
 
-  if (!validator.isLength(userName.value, { min: 3, max: 12 })) {
+  if (!validator.isLength(userName.value, { min: 3, max: 22 })) {
     toast(
       `В поле "${userName.previousElementSibling.textContent}" введіть кількість символів від 3 до 12`
     );
