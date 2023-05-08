@@ -86,6 +86,7 @@ refs.formBasket
     const input = e.target;
     if (input.value.length < 4) {
       input.value = '+38';
+      input.style.color = '#a9bfe4';
       input.setSelectionRange(input.value.length, input.value.length);
     }
   });
@@ -95,4 +96,5 @@ refs.formBasket
   .querySelector('input[name="tel"]')
   .addEventListener('focus', e => {
     e.target.removeAttribute('readonly');
+    e.target.style.color = '#212121';
   });

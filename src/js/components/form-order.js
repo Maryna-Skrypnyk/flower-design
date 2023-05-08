@@ -23,21 +23,3 @@ function onFormSubmit(e) {
     clearBasket();
   }
 }
-
-// /* Введення в поле номеру телефона з включеним початковим значенням */
-// refs.formBasket
-//   .querySelector('input[name="tel"]')
-//   .addEventListener('input', e => {
-//     const input = e.target;
-//     if (input.value.length < 4) {
-//       input.value = '+38';
-//       input.setSelectionRange(input.value.length, input.value.length);
-//     }
-//   });
-
-// /* Заборона видаляти початкове значення номеру телефона при фокусі в полі введення */
-// refs.formBasket
-//   .querySelector('input[name="tel"]')
-//   .addEventListener('focus', e => {
-//     e.target.removeAttribute('readonly');
-//   });

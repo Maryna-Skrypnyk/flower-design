@@ -25,7 +25,7 @@ function displayCartOrder() {
     Object.values(cartItems).map(item => {
       refs.productsInBasket.innerHTML += `
             <div class="product">
-              <img width="30" height="30" src=${item.image}>
+              <img src=${item.image}>
               <span class="product-name">${item.name}</span>
             </div>
             <div class="price">${item.price},00 &#8372;</div>
