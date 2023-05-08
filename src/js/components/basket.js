@@ -133,17 +133,13 @@ export function displayCart() {
 
     refs.productsInBasket.innerHTML += `
     <div class="basket-total-container">
-    
       <button class="btn-icon btn-icon-deleteAll" type="button" data-delete-all>
           <svg class="icon-delete-product">
               ${iconDeleteProduct}
           </svg>
       </button>
-      
-      
         <h4 class="basket-total-title">Загальна вартість</h4>
         <h4 class="basket-total">${cartCost},00 &#8372;</h4>
-      
     </div>`;
   } else {
     refs.productsContainerInBasket.style.display = 'none';
@@ -239,18 +235,15 @@ function updateQuantityProductInCart(e) {
     // Додавання одиниці товару в кошик по id та оновлення кількості, вартості та загальної вартості
     const idProduct = buttonAdd.parentNode.dataset.id;
     incrementProduct(idProduct);
-    updateTotalCost();
-    updateCartNumbers();
-    displayCart();
   }
   if (buttonRemove) {
     // Додавання одиниці товару в кошик по id та оновлення кількості, вартості та загальної вартості
     const idProduct = buttonRemove.parentNode.dataset.id;
     decrementProduct(idProduct);
-    updateTotalCost();
-    updateCartNumbers();
-    displayCart();
   }
+  updateTotalCost();
+  updateCartNumbers();
+  displayCart();
 }
 
 /* Очищення корзини */
