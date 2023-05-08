@@ -28,6 +28,8 @@
     "lodash.throttle": "^4.1.1",
     "modern-normalize": "^1.1.0",
     "toastify-js": "^1.12.0",
+    "validator": "^13.9.0",
+    "validatorjs": "^3.22.1",
     "vanilla-back-to-top": "^7.2.1"
   },
   "devDependencies": {
