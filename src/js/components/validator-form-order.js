@@ -80,21 +80,30 @@ export function validateForm() {
 }
 
 /* Введення в поле номеру телефона з включеним початковим значенням */
-refs.formBasket
-  .querySelector('input[name="tel"]')
-  .addEventListener('input', e => {
-    const input = e.target;
-    if (input.value.length < 4) {
-      input.value = '+38';
-      input.style.color = '#a9bfe4';
-      input.setSelectionRange(input.value.length, input.value.length);
-    }
-  });
+
+const inputTel = refs.formBasket.querySelector('input[name="tel"]');
+
+let selectionStart = inputTel.selectionStart;
+
+inputTel.addEventListener('input', e => {
+  selectionStart = e.target.selectionStart;
+  if (e.target.value.length < 4) {
+    e.target.value = '+38';
+    e.target.style.color = '#a9bfe4';
+    e.target.setSelectionRange(selectionStart, selectionStart);
+  }
+});
 
 /* Заборона видаляти початкове значення номеру телефона при фокусі в полі введення */
-refs.formBasket
-  .querySelector('input[name="tel"]')
-  .addEventListener('focus', e => {
-    e.target.removeAttribute('readonly');
-    e.target.style.color = '#212121';
-  });
+inputTel.addEventListener('focus', e => {
+  selectionStart = e.target.selectionStart;
+  e.target.removeAttribute('readonly');
+  e.target.style.color = '#212121';
+});
+
+inputTel.addEventListener('keydown', function (e) {
+  if (e.keyCode === 8 && e.target.selectionStart < 4) {
+    e.preventDefault();
+    return false;
+  }
+});
