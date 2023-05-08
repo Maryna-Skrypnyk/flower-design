@@ -110,7 +110,7 @@ export function displayCart() {
               ${iconDeleteProduct}
             </svg>
           </button>
-          <img width="30" height="30" src=${item.image}>
+          <img src=${item.image}>
           <span class="product-name">${item.name}</span>
         </div>
         <div class="price">${item.price},00 &#8372;</div>
@@ -177,8 +177,9 @@ function updateTotalCost() {
 
 /* Оновлення кількості товарів в кошику, збереження в локальне сховище та виведення на загальну сторінку*/
 function updateCartNumbers() {
-  const cartItems =
-    JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
+  const cartItems = JSON.parse(
+    localStorage.getItem(BASKET_KEYS.ProductsInCart)
+  );
 
   if (cartItems) {
     const cartNumbers = Object.values(cartItems).reduce(
