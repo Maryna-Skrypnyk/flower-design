@@ -4,13 +4,14 @@ import { toast } from './toast';
 
 const refs = getRefs();
 
-export function validateForm() {
-  let userName = refs.formBasket.querySelector('input[name="user-name"]');
-  let userPhone = refs.formBasket.querySelector('input[name="tel"]');
-  let userEmail = refs.formBasket.querySelector('input[name="mail"]');
-  let userAgree = refs.formBasket.querySelector('input[name="user-agreement"]');
+let userName = refs.formBasket.querySelector('input[name="user-name"]');
+let userPhone = refs.formBasket.querySelector('input[name="tel"]');
+let userEmail = refs.formBasket.querySelector('input[name="mail"]');
+let userAgree = refs.formBasket.querySelector('input[name="user-agreement"]');
 
+export function validateForm() {
   const errorMessageFormat = name => {
+    name.style.color = 'tomato';
     toast(
       `Введіть значення поля "${name.previousElementSibling.textContent}" у вірному форматі`
     );
@@ -40,6 +41,7 @@ export function validateForm() {
   }
 
   if (!validator.isLength(userName.value, { min: 3, max: 22 })) {
+    userName.style.color = 'tomato';
     toast(
       `В поле "${userName.previousElementSibling.textContent}" введіть кількість символів від 3 до 12`
     );
@@ -81,11 +83,9 @@ export function validateForm() {
 
 /* Введення в поле номеру телефона з включеним початковим значенням */
 
-const inputTel = refs.formBasket.querySelector('input[name="tel"]');
+let selectionStart;
 
-let selectionStart = inputTel.selectionStart;
-
-inputTel.addEventListener('input', e => {
+userPhone.addEventListener('input', e => {
   selectionStart = e.target.selectionStart;
   if (e.target.value.length < 4) {
     e.target.value = '+38';
@@ -95,15 +95,27 @@ inputTel.addEventListener('input', e => {
 });
 
 /* Заборона видаляти початкове значення номеру телефона при фокусі в полі введення */
-inputTel.addEventListener('focus', e => {
+userPhone.addEventListener('focus', e => {
   selectionStart = e.target.selectionStart;
   e.target.removeAttribute('readonly');
-  e.target.style.color = '#212121';
 });
 
-inputTel.addEventListener('keydown', function (e) {
+userPhone.addEventListener('keydown', function (e) {
   if (e.keyCode === 8 && e.target.selectionStart < 4) {
     e.preventDefault();
     return false;
   }
+});
+
+//
+refs.formBasket.querySelectorAll('input').forEach(item => {
+  item.addEventListener('blur', e => {
+    e.target.style.color = '#a9bfe4';
+  });
+});
+
+refs.formBasket.querySelectorAll('input').forEach(item => {
+  item.addEventListener('focus', e => {
+    e.target.style.color = '#212121';
+  });
 });
