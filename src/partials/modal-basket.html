@@ -52,9 +52,10 @@
         <div class="form-order-container">
           <form class="form-modal">
                     <p class="form-modal__name">Для підтвердження замовлення введіть ваші дані</p>
+                    <p class="form-modal__note"><span class="asterisk">*</span>поля, обов'язкові для заповнення</p>
 
                     <label class="form-modal__label">
-                        <span class="form-modal__content-label">Ім'я та прізвище</span>
+                        <span class="form-modal__content-label">Ім'я та прізвище<span class="asterisk">*</span></span>
                         <input type="text" name="user-name" class="form-modal__input" />
                         <svg class="form-modal__icon" width="18" height="18">
                             <use href="./images/sprite.svg#icon-person"></use>
@@ -62,15 +63,15 @@
                     </label>
 
                     <label class="form-modal__label">
-                        <span class="form-modal__content-label">Телефон</span>
-                        <input type="tel" name="tel" readonly value="+38" style="color: #a9bfe4" class="form-modal__input"/>
+                        <span class="form-modal__content-label">Телефон<span class="asterisk">*</span></span>
+                        <input type="tel" name="tel" readonly value="+38" placeholder="+38" class="form-modal__input"/>
                         <svg class="form-modal__icon" width="18" height="18">
                             <use href="./images/sprite.svg#icon-phone"></use>
                         </svg>
                     </label>
 
                     <label class="form-modal__label">
-                        <span class="form-modal__content-label">Електронна адреса</span>
+                        <span class="form-modal__content-label">Електронна адреса<span class="asterisk">*</span></span>
                         <input type="email" name="mail" class="form-modal__input"/>
                         <svg class="form-modal__icon" width="18" height="18">
                             <use href="./images/sprite.svg#icon-email"></use>
@@ -85,8 +86,8 @@
                     <div class="form-modal__checkbox">
                         <input type="checkbox" name="user-agreement" value="agree" id="check" class="form-modal__check"/>
                         <label for="check" class="form-modal__label-check">
-                            Погоджуюсь з розсилкою та приймаю
-                            <a href="" class="form-modal__link">Умови договору</a>
+                            Погоджуюсь та приймаю
+                            <a href="" class="form-modal__link">Умови договору</a><span class="asterisk">*</span>
                         </label>
                     </div>
                     

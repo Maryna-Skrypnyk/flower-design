@@ -9,32 +9,37 @@ let userPhone = refs.formBasket.querySelector('input[name="tel"]');
 let userEmail = refs.formBasket.querySelector('input[name="mail"]');
 let userAgree = refs.formBasket.querySelector('input[name="user-agreement"]');
 
+/* Функції для відображення помилок введення даних у формі */
+const errorMessageFormat = name => {
+  name.style.color = 'tomato';
+  const labelContent = removeAsterisk(name);
+  toast(`Введіть значення поля "${labelContent}" у вірному форматі`);
+};
+
+const errorMessage = name => {
+  const labelContent = removeAsterisk(name);
+  toast(`Поле "${labelContent}" обов'язкове для заповнення`);
+};
+
+const errorMessageQuantityChars = (name, min, max) => {
+  const labelContent = removeAsterisk(name);
+  toast(
+    `В поле "${labelContent}" введіть кількість символів від ${min} до ${max}`
+  );
+};
+
+const errorMessageAgree = () => {
+  toast(`Прийняття умов договору є обов'язковим для підтвердження замовлення`);
+};
+
+const removeAsterisk = name => {
+  return name.previousElementSibling.textContent
+    .split('')
+    .slice(0, -1)
+    .join('');
+};
+
 export function validateForm() {
-  const errorMessageFormat = name => {
-    name.style.color = 'tomato';
-    toast(
-      `Введіть значення поля "${name.previousElementSibling.textContent}" у вірному форматі`
-    );
-  };
-
-  const errorMessage = name => {
-    toast(
-      `Поле "${name.previousElementSibling.textContent}" обов'язкове для заповнення`
-    );
-  };
-
-  if (
-    validator.isEmpty(userEmail.value) &&
-    validator.isEmpty(userPhone.value) &&
-    validator.isEmpty(userName.value) &&
-    !userAgree.checked
-  ) {
-    toast(
-      `Поля "${userName.previousElementSibling.textContent}", "${userPhone.previousElementSibling.textContent}", "${userEmail.previousElementSibling.textContent}" обов'язкові для заповнення`
-    );
-    return false;
-  }
-
   if (validator.isEmpty(userName.value)) {
     errorMessage(userName);
     return false;
@@ -42,9 +47,7 @@ export function validateForm() {
 
   if (!validator.isLength(userName.value, { min: 3, max: 22 })) {
     userName.style.color = 'tomato';
-    toast(
-      `В поле "${userName.previousElementSibling.textContent}" введіть кількість символів від 3 до 12`
-    );
+    errorMessageQuantityChars(userName, 3, 22);
     return false;
   }
 
@@ -56,7 +59,7 @@ export function validateForm() {
   if (
     !validator.matches(
       userPhone.value,
-      /^(\+38|38|8)?[\s-.]?\d{3}[\s-.]?\d{2}[\s-.]?\d{2}[\s-.]?\d{3}$/
+      /^(\+38|38|8)\s?0\d{2}\s?\d{3}\s?\d{2}\s?\d{2}$/
     )
   ) {
     errorMessageFormat(userPhone);
@@ -74,32 +77,30 @@ export function validateForm() {
   }
 
   if (!userAgree.checked) {
-    toast(
-      `Прийняття умов договору є обов'язковим для підтвердження замовлення`
-    );
+    errorMessageAgree();
     return false;
   }
 }
 
 /* Введення в поле номеру телефона з включеним початковим значенням */
-
 let selectionStart;
 
 userPhone.addEventListener('input', e => {
   selectionStart = e.target.selectionStart;
   if (e.target.value.length < 4) {
     e.target.value = '+38';
-    e.target.style.color = '#a9bfe4';
     e.target.setSelectionRange(selectionStart, selectionStart);
   }
 });
 
-/* Заборона видаляти початкове значення номеру телефона при фокусі в полі введення */
+/* Заборона видаляти початкове значення номеру телефона та дозволяємо продовжити написання при фокусі в полі введення */
 userPhone.addEventListener('focus', e => {
-  selectionStart = e.target.selectionStart;
+  // selectionStart = e.target.selectionStart;
+  e.target.setSelectionRange(3, 3);
   e.target.removeAttribute('readonly');
 });
 
+/* При натисненні клавіші BackSpace і при початковому курсорі після 3-х символів, виходимо */
 userPhone.addEventListener('keydown', function (e) {
   if (e.keyCode === 8 && e.target.selectionStart < 4) {
     e.preventDefault();
@@ -107,15 +108,25 @@ userPhone.addEventListener('keydown', function (e) {
   }
 });
 
-//
+/* На всі поля форми при певних умовах змінюємо колір фону при виході з поля */
 refs.formBasket.querySelectorAll('input').forEach(item => {
   item.addEventListener('blur', e => {
-    e.target.style.color = '#a9bfe4';
+    if (
+      (e.target.value.length >= 3 && e.target.name === 'user-name') ||
+      (e.target.value.length >= 13 && e.target.name === 'tel') ||
+      (e.target.value.length >= 5 && e.target.name === 'mail')
+    ) {
+      e.target.style.backgroundColor = '#a9bfe44d';
+    } else {
+      e.target.style.backgroundColor = '#fff';
+    }
   });
 });
 
+/* На всіх полях форми змінюємо колір фону і тексту при фокусуванні в полі */
 refs.formBasket.querySelectorAll('input').forEach(item => {
   item.addEventListener('focus', e => {
     e.target.style.color = '#212121';
+    e.target.style.backgroundColor = '#a9bfe44d';
   });
 });

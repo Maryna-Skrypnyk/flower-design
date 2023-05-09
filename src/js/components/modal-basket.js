@@ -1,5 +1,11 @@
 import { displayCart } from './basket';
+import {
+  deleteProductFromCart,
+  deleteAllProductsFromBasket,
+  updateQuantityProductInCart,
+} from './basket';
 import getRefs from '../refs';
+
 const refs = getRefs();
 
 const btns = {
@@ -21,6 +27,9 @@ export function openModal() {
   refs.btnStartShopping.addEventListener('click', closeModal);
   refs.modalbackdrop.addEventListener('click', backdropCloseModal);
   window.addEventListener('keydown', onPressEscape);
+  refs.productsInBasket.addEventListener('click', deleteProductFromCart);
+  refs.productsInBasket.addEventListener('click', updateQuantityProductInCart);
+  refs.productsInBasket.addEventListener('click', deleteAllProductsFromBasket);
 }
 
 export function closeModal() {

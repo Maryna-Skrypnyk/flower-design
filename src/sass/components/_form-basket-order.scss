@@ -1,7 +1,7 @@
 .form-modal {
   &__name {
     margin-top: 0;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     text-align: center;
     font-family: Lora, sans-serif;
     font-size: 16px;
@@ -11,6 +11,12 @@
     @media screen and (min-width: 1200px) {
       line-height: 1.15;
     }
+  }
+
+  &__note {
+    font-size: 12px;
+    text-align: end;
+    color: $secondary-text-color;
   }
 
   &__checkbox {
@@ -43,6 +49,7 @@
   font-weight: 400;
   line-height: 1.16;
   letter-spacing: 0.01em;
+  color: #212121;
   @include transition(color);
 
   @media screen and (max-width: 767px) {
@@ -52,9 +59,15 @@
   }
 }
 
+.asterisk {
+  font-size: large;
+  color: $accent-pink-color;
+}
+
 .form-modal__input {
   padding: 12px 12px 12px 42px;
   color: #212121;
+  // color: $secondary-text-color;
   border-radius: 4px;
   @include bordered($accent-blue-color);
   @include transition(border-color);
@@ -74,7 +87,8 @@
 }
 
 .form-modal__input--comment::placeholder {
-  color: rgba(117, 117, 117, 0.5);
+  // color: rgba(117, 117, 117, 0.5);
+  color: $secondary-text-color;
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.01em;
@@ -87,7 +101,7 @@
 
 .form-modal__icon {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 12px;
   cursor: pointer;
   fill: $accent-blue-color;

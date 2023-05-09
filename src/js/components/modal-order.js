@@ -1,11 +1,26 @@
 import getRefs from '../refs';
 import { BASKET_KEYS } from '../../data/data';
+import {
+  deleteProductFromCart,
+  deleteAllProductsFromBasket,
+  updateQuantityProductInCart,
+} from './basket';
 
 const refs = getRefs();
 
 refs.btnOrder.addEventListener('click', onOrder);
 
 function onOrder(e) {
+  refs.productsInBasket.removeEventListener('click', deleteProductFromCart);
+  refs.productsInBasket.removeEventListener(
+    'click',
+    updateQuantityProductInCart
+  );
+  refs.productsInBasket.removeEventListener(
+    'click',
+    deleteAllProductsFromBasket
+  );
+
   refs.btnContinueShopping.style.display = 'none';
   e.target.style.display = 'none';
   refs.formOrder.style.display = 'block';
@@ -30,7 +45,9 @@ function displayCartOrder() {
             </div>
             <div class="price">${item.price},00 &#8372;</div>
             <div class="quantity">
-              <span class="quantity-cart">${item.inCart}</span>
+              <span class="quantity-cart" style="color: #a9bfe4">${
+                item.inCart
+              }</span>
             </div>
             <div class="total">${item.inCart * item.price},00 &#8372;</div>
             `;
