@@ -3,7 +3,7 @@ import ApiService from './service-api';
 import reviewsTemplate from '../../templates/reviews.hbs';
 import { makeScrollIntoAnchors } from './scroll';
 import { hideSpinner, showSpinner } from './spinner';
-import { getDateToday } from './getDateToday';
+import { getDateToday, getDateISO } from './getDateToday';
 import { toast } from './toast';
 import throttle from 'lodash.throttle';
 const LOCAL_STORAGE_KEY_REVIEW = 'reviewKey';
@@ -229,6 +229,7 @@ async function addNewReviewMarkup(author, text) {
     author,
     text,
     date: getDateToday(),
+    dateISO: getDateISO(),
   };
 
   showSpinner();

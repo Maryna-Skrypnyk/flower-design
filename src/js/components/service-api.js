@@ -10,7 +10,7 @@ export default class ApiService {
 
   async fetchReviews() {
     const response = await fetch(
-      `${BASE_URL}/reviews?page=${this.page}&l=${this.reviewsLimit}`
+      `${BASE_URL}/reviews?sortBy=dateISO&order=desc&page=${this.page}&l=${this.reviewsLimit}`
     );
     const results = await response.json();
     return results;

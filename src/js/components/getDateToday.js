@@ -10,3 +10,7 @@ export const getDateToday = () => {
 
   return `${formatDay}.${formatMonth}.${formatYear}`;
 };
+
+export const getDateISO = () => {
+  return new Date().toISOString();
+};
