@@ -9,6 +9,12 @@ let userPhone = refs.formBasket.querySelector('input[name="tel"]');
 let userEmail = refs.formBasket.querySelector('input[name="mail"]');
 let userAgree = refs.formBasket.querySelector('input[name="user-agreement"]');
 
+let userCity = refs.formBasket.querySelector('input[name="city"]');
+let userStreet = refs.formBasket.querySelector('input[name="street"]');
+let userHouse = refs.formBasket.querySelector('input[name="house"]');
+let userCorps = refs.formBasket.querySelector('input[name="corps"]');
+let userApartment = refs.formBasket.querySelector('input[name="apartment"]');
+
 /* Функції для відображення помилок введення даних у формі */
 const errorMessageFormat = name => {
   name.style.color = 'tomato';
@@ -76,6 +82,16 @@ export function validateForm() {
     return false;
   }
 
+  if (
+    validator.isEmpty(userCity.value) ||
+    validator.isEmpty(userStreet.value) ||
+    validator.isEmpty(userHouse.value) ||
+    validator.isEmpty(userApartment.value)
+  ) {
+    errorMessage(userCity);
+    return false;
+  }
+
   if (!userAgree.checked) {
     errorMessageAgree();
     return false;
@@ -114,7 +130,12 @@ refs.formBasket.querySelectorAll('input').forEach(item => {
     if (
       (e.target.value.length >= 3 && e.target.name === 'user-name') ||
       (e.target.value.length >= 13 && e.target.name === 'tel') ||
-      (e.target.value.length >= 5 && e.target.name === 'mail')
+      (e.target.value.length >= 5 && e.target.name === 'mail') ||
+      (e.target.value.length >= 1 && e.target.name === 'city') ||
+      (e.target.value.length >= 1 && e.target.name === 'street') ||
+      (e.target.value.length >= 1 && e.target.name === 'house') ||
+      (e.target.value.length >= 1 && e.target.name === 'corps') ||
+      (e.target.value.length >= 1 && e.target.name === 'apartment')
     ) {
       e.target.style.backgroundColor = '#a9bfe44d';
     } else {

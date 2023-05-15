@@ -67,7 +67,6 @@
 .form-modal__input {
   padding: 12px 12px 12px 42px;
   color: #212121;
-  // color: $secondary-text-color;
   border-radius: 4px;
   @include bordered($accent-blue-color);
   @include transition(border-color);
@@ -78,16 +77,42 @@
   &--comment {
     resize: none;
     min-height: 120px;
-    padding: 12px 16px;
+    padding: 12px;
   }
 
   .form-modal__label:focus-within & {
     border-color: $accent-pink-color;
   }
+
+  &--city {
+    padding-left: 12px;
+    margin-bottom: 10px;
+  }
+
+  &--street,
+  &--house,
+  &--corps,
+  &--apartment {
+    padding-left: 12px;
+    margin-right: 8px;
+  }
+
+  &--street {
+    width: 44%;
+  }
+
+  &--house,
+  &--corps {
+    width: 18%;
+  }
+
+  &--apartment {
+    margin-right: 0;
+    width: 20%;
+  }
 }
 
-.form-modal__input--comment::placeholder {
-  // color: rgba(117, 117, 117, 0.5);
+.form-modal__input::placeholder {
   color: $secondary-text-color;
   font-size: 14px;
   line-height: 1.14;
