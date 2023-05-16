@@ -2,7 +2,6 @@ export default function getRefs() {
   return {
     body: document.querySelector('body'),
     delivery: document.querySelector('.js-delivery'),
-    // galleryList: document.querySelector('.js-gallery-list'),
     catalog: document.querySelector('.js-catalog'),
     hamburger: document.querySelector('[data-menu-button]'),
     navigation: document.querySelector('[data-menu]'),

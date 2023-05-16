@@ -269,7 +269,13 @@ function onSubmitReview(e) {
   formData.name.value = '';
   formData.message.value = '';
   localStorage.removeItem(LOCAL_STORAGE_KEY_REVIEW); // очищення локального сховища за ключем
-  makeScrollIntoAnchors('reviews');
+
+  setTimeout(() => {
+    document.querySelector('#reviews').scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, 250);
 }
 
 populateInput();

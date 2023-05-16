@@ -1,8 +1,11 @@
 import getRefs from '../refs';
 import { validateForm } from './validator-form-order';
+import ApiService from './service-api';
 import { clearBasket } from './basket';
 import { toast } from './toast';
 import { closeModal } from './modal-basket';
+
+const reviewsApiService = new ApiService();
 
 const refs = getRefs();
 
@@ -15,11 +18,31 @@ function onFormSubmit(e) {
     return;
   } else {
     const form = refs.formBasket;
+
+    createOrder();
+
     toast(
       "Дякуємо за замовлення. Менеджер зв'яжеться з Вами найближчим часом."
     );
+
     form.reset();
     closeModal();
     clearBasket();
   }
+}
+
+async function createOrder() {
+  const form = refs.formBasket;
+  const formData = new FormData(form);
+  const newOrder = {};
+  formData.forEach((el, i) => {
+    newOrder[i] = el;
+  });
+  try {
+    await reviewsApiService.addDataFormOrder(newOrder);
+  } catch (error) {
+    console.log(error);
+  }
+  // const jsonString = JSON.stringify(newOrder);
+  // console.log('FORMJson ', jsonString);
 }

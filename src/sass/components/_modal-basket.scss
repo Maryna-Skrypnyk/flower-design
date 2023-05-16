@@ -195,8 +195,6 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    animation: animate__bounce;
-    animation-duration: 1s;
   }
 
   & img {
@@ -275,6 +273,9 @@
   margin-right: auto;
   margin-left: auto;
 
+  animation: fadeIn;
+  animation-duration: 1s;
+
   @media screen and (min-width: 740px) {
     margin-right: 0;
     margin-left: 0;
@@ -303,6 +304,9 @@
 
 .icon-flamingo {
   height: 250px;
+
+  animation: fadeIn;
+  animation-duration: 1s;
 
   @media screen and (max-width: 767px) {
     position: absolute;
