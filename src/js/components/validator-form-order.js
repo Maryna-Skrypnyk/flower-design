@@ -85,8 +85,7 @@ export function validateForm() {
   if (
     validator.isEmpty(userCity.value) ||
     validator.isEmpty(userStreet.value) ||
-    validator.isEmpty(userHouse.value) ||
-    validator.isEmpty(userApartment.value)
+    validator.isEmpty(userHouse.value)
   ) {
     errorMessage(userCity);
     return false;
@@ -131,11 +130,12 @@ refs.formBasket.querySelectorAll('input').forEach(item => {
       (e.target.value.length >= 3 && e.target.name === 'user-name') ||
       (e.target.value.length >= 13 && e.target.name === 'tel') ||
       (e.target.value.length >= 5 && e.target.name === 'mail') ||
-      (e.target.value.length >= 1 && e.target.name === 'city') ||
-      (e.target.value.length >= 1 && e.target.name === 'street') ||
-      (e.target.value.length >= 1 && e.target.name === 'house') ||
-      (e.target.value.length >= 1 && e.target.name === 'corps') ||
-      (e.target.value.length >= 1 && e.target.name === 'apartment')
+      (e.target.value.length >= 1 &&
+        (e.target.name === 'city' ||
+          e.target.name === 'street' ||
+          e.target.name === 'house' ||
+          e.target.name === 'corps' ||
+          e.target.name === 'apartment'))
     ) {
       e.target.style.backgroundColor = '#a9bfe44d';
     } else {
