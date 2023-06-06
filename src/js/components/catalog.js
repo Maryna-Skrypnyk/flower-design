@@ -3,6 +3,7 @@ import ApiService from './service-api';
 import catalogTemplate from '../../templates/catalog-card.hbs';
 import { makeScrollIntoAnchors } from './scroll';
 import { hideSpinner, showSpinner } from './spinner';
+import { updateProductBasketInCatalog } from './product-basket';
 
 const arrowLeft = document.getElementById(`prev__button--catalog`),
   arrowRight = document.getElementById(`next__button--catalog`),
@@ -212,4 +213,5 @@ function createListPage(currentPage) {
 function createCatalogMarkUp(catalogInfo) {
   refs.catalog.innerHTML = '';
   refs.catalog.insertAdjacentHTML('beforeend', catalogTemplate(catalogInfo));
+  updateProductBasketInCatalog(catalogInfo);
 }

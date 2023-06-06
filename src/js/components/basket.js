@@ -1,39 +1,40 @@
 import getRefs from '../refs';
 import ApiService from './service-api';
+import {
+  updateProductBasketInCatalog,
+  updateProductBasketInCatalogById,
+} from './product-basket';
 import { iconDeleteProduct, addQuantity, removeQuantity } from './icons';
 import { openModal } from './modal-basket';
-import { BASKET_KEYS } from '../../data/data';
-import { HIT_PRODUCT_ID } from '../../data/data';
+import { BASKET_KEYS, HIT_PRODUCT_ID } from '../../data/data';
 
 const refs = getRefs();
 
 const productApiService = new ApiService();
 
-/* Знаходження об'єкту товару по id та додавання в корзину */
-refs.catalog.addEventListener('click', async e => {
-  if (e.target.nodeName !== 'BUTTON') {
-    return;
-  } else {
-    const idProduct = e.target.dataset.id;
-    const productById = await productApiService.getFullProductInfo(idProduct);
-    cartNumbers(productById);
-    totalCost(productById);
-    openModal();
-  }
-});
+/* Оновлення даних по id під час додавання в корзину */
+async function updateAfterAddToBasket(idProduct) {
+  const productById = await productApiService.getFullProductInfo(idProduct);
+  cartNumbers(productById);
+  totalCost(productById);
+  openModal();
+  updateProductBasketInCatalogById(idProduct);
+}
 
-refs.btnToBasket.addEventListener('click', async e => {
-  if (e.target.nodeName !== 'BUTTON') {
-    return;
+/* Знаходження об'єкту товару по id та додавання в корзину */
+function addToBasket(e) {
+  const buttonContent = e.target.closest('.button-primary--catalog');
+  const buttonHero = e.target.closest('.js-button-toBasket');
+  if (buttonContent || buttonHero) {
+    const idProduct = buttonContent?.dataset.id || HIT_PRODUCT_ID;
+    updateAfterAddToBasket(idProduct);
   } else {
-    const productById = await productApiService.getFullProductInfo(
-      HIT_PRODUCT_ID
-    );
-    cartNumbers(productById);
-    totalCost(productById);
-    openModal();
+    return;
   }
-});
+}
+
+refs.catalog.addEventListener('click', addToBasket);
+refs.btnToBasket.addEventListener('click', addToBasket);
 
 /* Відображення кількості товарів з локального сховища при першому завантаженні*/
 function onLoadCardNumbers() {
@@ -49,9 +50,11 @@ function cartNumbers(product) {
   productNumbers = parseInt(productNumbers);
   if (productNumbers) {
     localStorage.setItem(BASKET_KEYS.CartNumbers, productNumbers + 1);
+    // window.dispatchEvent(new Event('storage'));
     refs.basketQuantity.textContent = productNumbers + 1;
   } else {
     localStorage.setItem(BASKET_KEYS.CartNumbers, 1);
+    // window.dispatchEvent(new Event('storage'));
     refs.basketQuantity.textContent = 1;
   }
   setItems(product);
@@ -76,6 +79,7 @@ function setItems(product) {
     };
   }
   localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
+  // window.dispatchEvent(new Event('storage'));
 }
 
 /* Підрахунок вартості товарів в корзині та зберігаємо в локальне сховище */
@@ -84,8 +88,10 @@ function totalCost(product) {
   if (cartCost) {
     cartCost = parseInt(cartCost);
     localStorage.setItem(BASKET_KEYS.TotalCost, cartCost + product.price);
+    // window.dispatchEvent(new Event('storage'));
   } else {
     localStorage.setItem(BASKET_KEYS.TotalCost, product.price);
+    // window.dispatchEvent(new Event('storage'));
   }
 }
 
@@ -148,13 +154,13 @@ export function displayCart() {
 }
 
 /* ВИДАЛЕННЯ ТА ОНОВЛЕННЯ ТОВАРІВ У КОШИКУ */
-
 /* Функція для видалення товару з кошика */
 function removeProductFromCart(id) {
   const cartItems =
     JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
   delete cartItems[id];
   localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
+  // window.dispatchEvent(new Event('storage'));
 }
 
 /* Оновлення вартості товарів в корзині та збереження в локальне сховище */
@@ -168,6 +174,7 @@ function updateTotalCost() {
       0
     );
     localStorage.setItem(BASKET_KEYS.TotalCost, totalCost);
+    // window.dispatchEvent(new Event('storage'));
   }
 }
 
@@ -183,12 +190,20 @@ function updateCartNumbers() {
       0
     );
     localStorage.setItem(BASKET_KEYS.CartNumbers, cartNumbers);
+    // window.dispatchEvent(new Event('storage'));
     refs.basketQuantity.textContent = cartNumbers;
   }
 }
 
 /* Подія "click" на весь список продуктів в кошику */
 refs.productsInBasket.addEventListener('click', deleteProductFromCart);
+
+function updateCartAfterDelete(idProduct) {
+  updateTotalCost();
+  updateCartNumbers();
+  displayCart();
+  updateProductBasketInCatalogById(idProduct);
+}
 
 export function deleteProductFromCart(e) {
   // Перевірка, чи була натиснута кнопка видалення
@@ -197,24 +212,27 @@ export function deleteProductFromCart(e) {
     // Видалення товару з кошика по id та оновлення вмісту кошика на сторінці
     const idProduct = buttonDelete.parentNode.dataset.id;
     removeProductFromCart(idProduct);
-    updateTotalCost();
-    updateCartNumbers();
-    displayCart();
+    updateCartAfterDelete(idProduct);
+  } else {
+    return;
   }
 }
 
 /* РЕАЛІЗАЦІЯ КНОПОК ДОДАВАННЯ/ВІДНІМАННЯ КІЛЬКОСТІ ТОВАРІВ В КОШИКУ */
 
 /* Функція збільшення на одиницю продуктів в кошику */
-function incrementProduct(id) {
+async function incrementProduct(id) {
   let cartItems =
     JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
   cartItems[id].inCart += 1;
   localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
+  // window.dispatchEvent(new Event('storage'));
+  const productById = await productApiService.getFullProductInfo(id);
+  updateProductBasketInCatalogById(productById.id);
 }
 
 /* Функція зменшення на одиницю продуктів в кошику */
-function decrementProduct(id) {
+async function decrementProduct(id) {
   let cartItems =
     JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
   cartItems[id].inCart -= 1;
@@ -222,6 +240,9 @@ function decrementProduct(id) {
     return;
   }
   localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
+  // window.dispatchEvent(new Event('storage'));
+  const productById = await productApiService.getFullProductInfo(id);
+  updateProductBasketInCatalogById(productById.id);
 }
 
 /* Подія "click" на весь список продуктів в кошику */
@@ -244,16 +265,37 @@ export function updateQuantityProductInCart(e) {
   updateTotalCost();
   updateCartNumbers();
   displayCart();
+  // updateProductBasketInCatalogById(productById.id);
 }
 
 /* Очищення корзини */
 refs.productsInBasket.addEventListener('click', deleteAllProductsFromBasket);
 
+async function updateAfterDeleteAll() {
+  const catalogInfo = await productApiService.fetchCatalogAll();
+  catalogInfo.forEach(el => {
+    const btnProductCatalogById = refs.catalog.querySelector(
+      `.button-primary--catalog[data-id="${el.id}"]`
+    );
+    const numberProductInBasket = refs.catalog.querySelector(
+      `.basket-catalog__count[data-id="${el.id}"]`
+    );
+
+    btnProductCatalogById.childNodes[
+      btnProductCatalogById.childNodes.length - 1
+    ].nodeValue = 'В кошик';
+    btnProductCatalogById.setAttribute('data-in-cart', false);
+    numberProductInBasket.textContent = '0';
+  });
+}
+
 export function deleteAllProductsFromBasket(e) {
   const buttonDeleteAll = e.target.closest('button[data-delete-all]');
+
   if (buttonDeleteAll) {
     clearBasket();
     displayCart();
+    updateAfterDeleteAll();
   }
 }
 
@@ -261,6 +303,7 @@ export function clearBasket() {
   localStorage.removeItem(BASKET_KEYS.ProductsInCart);
   localStorage.removeItem(BASKET_KEYS.CartNumbers);
   localStorage.removeItem(BASKET_KEYS.TotalCost);
+
   refs.basketQuantity.textContent = 0;
 }
 

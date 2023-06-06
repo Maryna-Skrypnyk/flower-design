@@ -32,7 +32,7 @@ export function openModal() {
   refs.productsInBasket.addEventListener('click', deleteAllProductsFromBasket);
 }
 
-export function closeModal() {
+export async function closeModal() {
   document.body.classList.remove('modal-open');
   refs.modalbackdrop.classList.add('is-hidden');
   btns.closeModalBtn.removeEventListener('click', closeModal);
