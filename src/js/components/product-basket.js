@@ -58,7 +58,6 @@ export function updateProductBasketInCatalogById(productId) {
   let cartItems = localStorage.getItem(BASKET_KEYS.ProductsInCart);
 
   if (cartItems && cartItems !== '{}') {
-    console.log(numberProductInBasket);
     cartItems = JSON.parse(cartItems);
     const arrayProducts = Object.keys(cartItems);
     if (arrayProducts.includes(productId)) {

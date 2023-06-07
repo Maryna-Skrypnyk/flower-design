@@ -219,6 +219,7 @@ export function deleteProductFromCart(e) {
 }
 
 /* РЕАЛІЗАЦІЯ КНОПОК ДОДАВАННЯ/ВІДНІМАННЯ КІЛЬКОСТІ ТОВАРІВ В КОШИКУ */
+function updateMarkupAfterChangeCount(productId) {}
 
 /* Функція збільшення на одиницю продуктів в кошику */
 async function incrementProduct(id) {
@@ -226,7 +227,7 @@ async function incrementProduct(id) {
     JSON.parse(localStorage.getItem(BASKET_KEYS.ProductsInCart)) || {};
   cartItems[id].inCart += 1;
   localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
-  // window.dispatchEvent(new Event('storage'));
+
   const productById = await productApiService.getFullProductInfo(id);
   updateProductBasketInCatalogById(productById.id);
 }
@@ -240,7 +241,7 @@ async function decrementProduct(id) {
     return;
   }
   localStorage.setItem(BASKET_KEYS.ProductsInCart, JSON.stringify(cartItems));
-  // window.dispatchEvent(new Event('storage'));
+
   const productById = await productApiService.getFullProductInfo(id);
   updateProductBasketInCatalogById(productById.id);
 }
@@ -265,27 +266,19 @@ export function updateQuantityProductInCart(e) {
   updateTotalCost();
   updateCartNumbers();
   displayCart();
-  // updateProductBasketInCatalogById(productById.id);
 }
 
 /* Очищення корзини */
 refs.productsInBasket.addEventListener('click', deleteAllProductsFromBasket);
 
-async function updateAfterDeleteAll() {
-  const catalogInfo = await productApiService.fetchCatalogAll();
-  catalogInfo.forEach(el => {
-    const btnProductCatalogById = refs.catalog.querySelector(
-      `.button-primary--catalog[data-id="${el.id}"]`
-    );
-    const numberProductInBasket = refs.catalog.querySelector(
-      `.basket-catalog__count[data-id="${el.id}"]`
-    );
-
-    btnProductCatalogById.childNodes[
-      btnProductCatalogById.childNodes.length - 1
-    ].nodeValue = 'В кошик';
-    btnProductCatalogById.setAttribute('data-in-cart', false);
-    numberProductInBasket.textContent = '0';
+function updateMarkupAfterDeleteAll() {
+  const productButtons = refs.catalog.querySelectorAll(
+    '.button-primary--catalog'
+  );
+  Array.from(productButtons).map(button => {
+    button.childNodes[button.childNodes.length - 1].nodeValue = 'В кошик';
+    button.setAttribute('data-in-cart', false);
+    button.querySelector('span[data-id]').textContent = '0';
   });
 }
 
@@ -295,16 +288,16 @@ export function deleteAllProductsFromBasket(e) {
   if (buttonDeleteAll) {
     clearBasket();
     displayCart();
-    updateAfterDeleteAll();
   }
 }
 
-export function clearBasket() {
+export async function clearBasket() {
   localStorage.removeItem(BASKET_KEYS.ProductsInCart);
   localStorage.removeItem(BASKET_KEYS.CartNumbers);
   localStorage.removeItem(BASKET_KEYS.TotalCost);
 
   refs.basketQuantity.textContent = 0;
+  updateMarkupAfterDeleteAll();
 }
 
 onLoadCardNumbers();
