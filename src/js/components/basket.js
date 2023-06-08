@@ -1,9 +1,6 @@
 import getRefs from '../refs';
 import ApiService from './service-api';
-import {
-  updateProductBasketInCatalog,
-  updateProductBasketInCatalogById,
-} from './product-basket';
+import { updateProductBasketInCatalogById } from './product-basket';
 import { iconDeleteProduct, addQuantity, removeQuantity } from './icons';
 import { openModal } from './modal-basket';
 import { BASKET_KEYS, HIT_PRODUCT_ID } from '../../data/data';
@@ -36,7 +33,7 @@ function addToBasket(e) {
 refs.catalog.addEventListener('click', addToBasket);
 refs.btnToBasket.addEventListener('click', addToBasket);
 
-/* Відображення кількості товарів з локального сховища при першому завантаженні*/
+/* Відображення кількості товарів з локального сховища при першому завантаженні */
 function onLoadCardNumbers() {
   let productNumbers = localStorage.getItem(BASKET_KEYS.CartNumbers);
   if (productNumbers) {
