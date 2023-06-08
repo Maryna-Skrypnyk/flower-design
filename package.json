@@ -4,7 +4,6 @@
   "description": "",
   "homepage": "https://maryna-skrypnyk.github.io/flower-design",
   "scripts": {
-    "start": "node index.js",
     "dev": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /flower-design/",
     "predeploy": "npm run build",
