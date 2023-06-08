@@ -1,0 +1,8 @@
+services:
+  - name: flower-design
+    type: web
+    buildCommand: npm run build
+    publishCommand: echo 'No publish command'
+    env:
+      - key: PARCEL_PUBLIC_URL
+        value: /flower-design/
