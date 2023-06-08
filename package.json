@@ -8,7 +8,8 @@
     "build": "parcel build src/*.html --public-url /flower-design/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "server": "json-server --watch reviews.json -p 4040 -d 300"
+    "server": "json-server --watch reviews.json -p 4040 -d 300",
+    "start": "parcel serve src/*.html --public-url /flower-design/"
   },
   "repository": {
     "type": "git",
