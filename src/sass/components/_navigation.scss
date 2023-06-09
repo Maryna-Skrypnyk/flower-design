@@ -1,5 +1,5 @@
 .navigation__backdrop {
-  // display: none;
+  display: none;
 
   &.is-open {
     @media screen and (max-width: calc($tablet-min - 0.5px)) {
@@ -13,7 +13,7 @@
 
       animation: fadeIn;
       animation-duration: 0.3s;
-      z-index: 2;
+      z-index: 3;
     }
   }
 
@@ -31,6 +31,7 @@
   box-shadow: $shadow-card-hover;
   animation: fadeInLeft;
   animation-duration: 0.2s;
+  z-index: 3;
 
   background-image: url('../images/bouquet/flowers1-1x-desk.png'),
     url('../images/bouquet/flowers2-1x-desk.png');
