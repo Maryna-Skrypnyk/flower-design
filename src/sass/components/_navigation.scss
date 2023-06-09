@@ -38,6 +38,7 @@
   // background-position: bottom 236px right, top 206px left;
   background-position: top -180px right, top 206px left;
   background-size: auto;
+  z-index: 99;
 
   @media screen and (min-width: $mobile-medium) and (max-width: $tablet-min) {
     width: 300px;
