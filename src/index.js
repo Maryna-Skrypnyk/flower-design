@@ -1,4 +1,4 @@
-import './sass/index.scss';
+// import './sass/index.scss';
 import './js/components/hamburger-menu';
 import './js/components/catalog';
 import './js/components/reviews';
