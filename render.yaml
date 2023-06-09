@@ -1,7 +1,0 @@
-services:
-  - name: flowers-design
-    env:
-      - key: PARCEL_PUBLIC_URL
-        value: /flower-design/
-    buildCommand: npm run build
-    startCommand: npm start
