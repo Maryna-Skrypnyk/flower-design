@@ -20,8 +20,11 @@
 .form-textarea {
   padding: 10px 15px;
   min-width: 100%;
-  border: none;
-  outline-color: $accent-pink-color;
+  // border: none;
+  border: 1px solid transparent;
+  outline: none;
+  // outline-color: $accent-pink-color;
+  // @include transition(outline-color);
 
   &::placeholder {
     color: #acacac;
@@ -41,6 +44,10 @@
   @media screen and (min-width: $tablet-min) {
     margin-bottom: 12px;
   }
+
+  &:focus {
+    border-color: $accent-pink-color;
+  }
 }
 
 .form-textarea {
@@ -51,6 +58,10 @@
   @media screen and (min-width: $tablet-min) {
     margin-bottom: 15px;
     height: 94px;
+  }
+
+  &:focus {
+    border-color: $accent-pink-color;
   }
 }
 

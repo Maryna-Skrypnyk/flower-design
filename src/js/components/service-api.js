@@ -99,23 +99,23 @@ export default class ApiService {
   //     });
   // }
 
-  // async addDataFormOrder(order) {
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(order),
-  //   };
+  async addDataFormOrder(order) {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(order),
+    };
 
-  //   try {
-  //     const response = await fetch(`${BASE_URL}/orders`, options);
-  //     const results = await response.json();
-  //     return results;
-  //   } catch (error) {
-  //     return console.log(error);
-  //   }
-  // }
+    try {
+      const response = await fetch(`${BASE_URL}/orders`, options);
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
 
   resetPage() {
     this.page = 1;

@@ -4,8 +4,9 @@ import ApiService from './service-api';
 import { clearBasket } from './basket';
 import { toast } from './toast';
 import { closeModal } from './modal-basket';
+import { hideSpinner, showSpinner } from './spinner';
 
-const reviewsApiService = new ApiService();
+const orderApiService = new ApiService();
 
 const refs = getRefs();
 
@@ -21,10 +22,6 @@ function onFormSubmit(e) {
 
     createOrder();
 
-    toast(
-      "Дякуємо за замовлення. Менеджер зв'яжеться з Вами найближчим часом."
-    );
-
     form.reset();
     closeModal();
     clearBasket();
@@ -38,11 +35,18 @@ async function createOrder() {
   formData.forEach((el, i) => {
     newOrder[i] = el;
   });
+  showSpinner();
   try {
-    await reviewsApiService.addDataFormOrder(newOrder);
+    await orderApiService.addDataFormOrder(newOrder);
+    toast(
+      "Дякуємо за замовлення. Менеджер зв'яжеться з Вами найближчим часом."
+    );
   } catch (error) {
     console.log(error);
+    toast('Щось пішло не так. Спробуйте оформити замовлення ще раз.');
+  } finally {
+    hideSpinner();
   }
   // const jsonString = JSON.stringify(newOrder);
-  // console.log('FORMJson ', jsonString);
+  // console.log('DataFormJSON ', jsonString);
 }

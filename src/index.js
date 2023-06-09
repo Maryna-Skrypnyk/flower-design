@@ -9,4 +9,3 @@ import './js/components/basket';
 import './js/components/modal-basket';
 import './js/components/modal-order';
 import './js/components/form-order';
-import './js/scale-input';
