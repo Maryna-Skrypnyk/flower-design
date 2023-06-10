@@ -9,6 +9,9 @@
   "transformers": {
     "*.hbs": [
       "parcel-transformer-hbs"
+    ],
+    "sass": [
+      "@parcel/transformer-sass"
     ]
   }
 }
